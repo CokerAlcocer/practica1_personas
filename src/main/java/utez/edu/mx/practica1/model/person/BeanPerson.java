@@ -3,7 +3,7 @@ package utez.edu.mx.practica1.model.person;
 import java.util.Date;
 
 public class BeanPerson {
-    private int iduser;
+    private int idPerson;
     private String nombre;
     private String aPaterno;
     private String aMaterno;
@@ -11,7 +11,7 @@ public class BeanPerson {
     private String sexo;
     private String telefono;
     private String direccion;
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
     private boolean estadoCivil;
     private String correo;
     private String contrasena;
@@ -20,8 +20,8 @@ public class BeanPerson {
     public BeanPerson() {
     }
 
-    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, Date fechaNacimiento, boolean estadoCivil, String correo, String contrasena) {
-        this.iduser = iduser;
+    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, boolean estadoCivil, String correo, String contrasena) {
+        this.idPerson = iduser;
         this.nombre = nombre;
         this.aPaterno = aPaterno;
         this.aMaterno = aMaterno;
@@ -35,12 +35,12 @@ public class BeanPerson {
         this.contrasena = contrasena;
     }
 
-    public int getIduser() {
-        return iduser;
+    public int getIdPerson() {
+        return idPerson;
     }
 
-    public void setIduser(int iduser) {
-        this.iduser = iduser;
+    public void setIdPerson(int idPerson) {
+        this.idPerson = idPerson;
     }
 
     public String getNombre() {
@@ -99,11 +99,11 @@ public class BeanPerson {
         this.direccion = direccion;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
