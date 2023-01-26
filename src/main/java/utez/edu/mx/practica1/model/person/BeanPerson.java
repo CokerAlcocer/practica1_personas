@@ -11,7 +11,7 @@ public class BeanPerson {
     private String sexo;
     private String telefono;
     private String direccion;
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
     private boolean estadoCivil;
     private String correo;
     private String contrasena;
@@ -20,7 +20,7 @@ public class BeanPerson {
     public BeanPerson() {
     }
 
-    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, Date fechaNacimiento, boolean estadoCivil, String correo, String contrasena) {
+    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, boolean estadoCivil, String correo, String contrasena) {
         this.iduser = iduser;
         this.nombre = nombre;
         this.aPaterno = aPaterno;

@@ -7,6 +7,25 @@ public class ConnectionDB {
         DriverManager.registerDriver(new Driver());
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/dbpersona?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","root");
     }
+    public static void closeConnections(Connection con, PreparedStatement pstm, ResultSet rs){
+        try{
+            if(rs != null){ rs.close(); }
+
+            if(pstm != null){ pstm.close(); }
+
+            if(con != null){ con.close(); }
+
+        }catch(SQLException e){ }
+    }
+
+    public static void closeConnections(Connection con, PreparedStatement pstm){
+        try{
+            if(pstm != null){ pstm.close(); }
+
+            if(con != null){ con.close(); }
+
+        }catch(SQLException e){ }
+    }
 
     public static void main(String[] args) {
         try{
