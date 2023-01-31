@@ -1,27 +1,24 @@
-package utez.edu.mx.practica1.model.person;
+package utez.edu.mx.practica1.model.persona;
 
-import java.util.Date;
-
-public class BeanPerson {
-    private int iduser;
-    private String nombre;
-    private String aPaterno;
-    private String aMaterno;
+public class BeanPersona {
+    private int idPersona;
+    private String nombre,aPaterno,aMaterno;
     private int edad;
     private String sexo;
     private String telefono;
     private String direccion;
-    private Date fechaNacimiento;
-    private boolean estadoCivil;
+    private  String fechaNacimiento;
+    private  String estadoCivil;
     private String correo;
+    private boolean trabajo;
     private String contrasena;
     private boolean estado;
 
-    public BeanPerson() {
+    public BeanPersona() {
     }
 
-    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, Date fechaNacimiento, boolean estadoCivil, String correo, String contrasena) {
-        this.iduser = iduser;
+    public BeanPersona(int idPersona, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, boolean trabajo, String contrasena, boolean estado) {
+        this.idPersona = idPersona;
         this.nombre = nombre;
         this.aPaterno = aPaterno;
         this.aMaterno = aMaterno;
@@ -32,15 +29,17 @@ public class BeanPerson {
         this.fechaNacimiento = fechaNacimiento;
         this.estadoCivil = estadoCivil;
         this.correo = correo;
+        this.trabajo = trabajo;
         this.contrasena = contrasena;
+        this.estado = estado;
     }
 
-    public int getIduser() {
-        return iduser;
+    public int getIdPersona() {
+        return idPersona;
     }
 
-    public void setIduser(int iduser) {
-        this.iduser = iduser;
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
     }
 
     public String getNombre() {
@@ -99,19 +98,19 @@ public class BeanPerson {
         this.direccion = direccion;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public boolean isEstadoCivil() {
+    public String getEstadoCivil() {
         return estadoCivil;
     }
 
-    public void setEstadoCivil(boolean estadoCivil) {
+    public void setEstadoCivil(String estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
 
@@ -123,6 +122,14 @@ public class BeanPerson {
         this.correo = correo;
     }
 
+    public boolean getTrabajo() {
+        return trabajo;
+    }
+
+    public void setTrabajo(boolean trabajo) {
+        this.trabajo = trabajo;
+    }
+
     public String getContrasena() {
         return contrasena;
     }
@@ -131,7 +138,7 @@ public class BeanPerson {
         this.contrasena = contrasena;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
