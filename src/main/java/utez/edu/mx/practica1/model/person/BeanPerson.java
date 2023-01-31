@@ -1,6 +1,5 @@
 package utez.edu.mx.practica1.model.person;
 
-import java.util.Date;
 
 public class BeanPerson {
     private int iduser;
@@ -99,11 +98,11 @@ public class BeanPerson {
         this.direccion = direccion;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
