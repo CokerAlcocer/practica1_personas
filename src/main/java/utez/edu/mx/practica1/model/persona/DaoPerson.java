@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DaoPersona {
+public class DaoPerson {
     //Variables globales
     private Connection con;
     private PreparedStatement pstm;
@@ -37,9 +37,9 @@ public class DaoPersona {
     // EncontrarTodos
     // TODO
     String find_personas = "SELECT p.* from persona p;";
-    public List<BeanPersona> findAll() throws SQLException {
-        List<BeanPersona> personas = new ArrayList<>();
-        BeanPersona persona = new BeanPersona();
+    public List<BeanPerson> findAll() throws SQLException {
+        List<BeanPerson> personas = new ArrayList<>();
+        BeanPerson persona = new BeanPerson();
         try{
             con = ConnectionDB.getConnection();
             pstm = con.prepareCall(find_personas);
@@ -79,8 +79,8 @@ public class DaoPersona {
     // TODO
     String find_persona = "SELECT p.* from persona p WHERE idPersona = ?;";
 
-    public BeanPersona findById(int idPersona) throws SQLException{
-        BeanPersona persona = new BeanPersona();
+    public BeanPerson findById(int idPersona) throws SQLException{
+        BeanPerson persona = new BeanPerson();
         try{
             con = ConnectionDB.getConnection();
             pstm = con.prepareStatement(find_persona);
@@ -115,7 +115,7 @@ public class DaoPersona {
     // Create
     // TODO
     String create_persona = "INSERT INTO persona values(null,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    public int create(BeanPersona persona) throws SQLException{
+    public int create(BeanPerson persona) throws SQLException{
         int flag = 0;
         try{
             con = ConnectionDB.getConnection();
@@ -150,7 +150,7 @@ public class DaoPersona {
             "aPaterno = ?,aMaterno = ?, edad = ?, sexo = ?,telefono = ?," +
             "direccion = ?, fechaNacimiento = ?,estadoCivil = ?,correo = ?,trabajo = ?," +
             "contrasena = ?, estado = ? WHERE idPersona = ?;";
-    public int update(BeanPersona persona) throws SQLException{
+    public int update(BeanPerson persona) throws SQLException{
         int flag = 0;
         try{
             con = ConnectionDB.getConnection();

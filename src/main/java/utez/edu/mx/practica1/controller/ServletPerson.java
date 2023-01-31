@@ -1,14 +1,13 @@
 package utez.edu.mx.practica1.controller;
 
 import com.google.gson.Gson;
-import utez.edu.mx.practica1.model.persona.BeanPersona;
-import utez.edu.mx.practica1.model.persona.DaoPersona;
+import utez.edu.mx.practica1.model.persona.BeanPerson;
+import utez.edu.mx.practica1.model.persona.DaoPerson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -18,11 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "ServletPersona",value = "/ServletPersona")
-public class ServletPersona {
+public class ServletPerson {
     private Map map = new HashMap();
-    final private Logger log = LoggerFactory.getLogger(ServletPersona.class);
-    DaoPersona daoPersona = new DaoPersona();
-    BeanPersona persona = new BeanPersona();
+    final private Logger log = LoggerFactory.getLogger(ServletPerson.class);
+    DaoPerson daoPersona = new DaoPerson();
+    BeanPerson persona = new BeanPerson();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         //permitir la codificacion de caracteres
@@ -49,7 +48,7 @@ public class ServletPersona {
 
         switch (action){
             case "findAll":
-                List<BeanPersona> listPersonas = daoPersona.findAll();
+                List<BeanPerson> listPersonas = daoPersona.findAll();
                 map.put("ListPersonas",listPersonas);
                 write(response,map);
                 map.clear();
@@ -76,7 +75,7 @@ public class ServletPersona {
                 contrasena = request.getParameter("txtcontrasena");
                 estado = Boolean.parseBoolean(request.getParameter("txtestado"));
 
-                persona = new BeanPersona(idPersona,nombre,aPaterno,aMaterno,edad,sexo,telefono,
+                persona = new BeanPerson(idPersona,nombre,aPaterno,aMaterno,edad,sexo,telefono,
                         direccion,fechaNacimiento,estadoCivil,correo,trabajo,contrasena,estado);
                 daoPersona.create(persona);
                 request.getRequestDispatcher("ServletPersona?action=findAll").forward(request,response);
@@ -99,7 +98,7 @@ public class ServletPersona {
                     contrasena = request.getParameter("txtUcontrasena");
                     estado = Boolean.parseBoolean(request.getParameter("txtUestado"));
 
-                    persona = new BeanPersona(idPersona,nombre,aPaterno,aMaterno,edad,sexo,telefono,
+                    persona = new BeanPerson(idPersona,nombre,aPaterno,aMaterno,edad,sexo,telefono,
                             direccion,fechaNacimiento,estadoCivil,correo,trabajo,contrasena,estado);
                     daoPersona.create(persona);
 

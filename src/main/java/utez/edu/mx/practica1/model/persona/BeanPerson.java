@@ -1,6 +1,6 @@
 package utez.edu.mx.practica1.model.persona;
 
-public class BeanPersona {
+public class BeanPerson {
     private int idPersona;
     private String nombre,aPaterno,aMaterno;
     private int edad;
@@ -14,10 +14,10 @@ public class BeanPersona {
     private String contrasena;
     private boolean estado;
 
-    public BeanPersona() {
+    public BeanPerson() {
     }
 
-    public BeanPersona(int idPersona, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, boolean trabajo, String contrasena, boolean estado) {
+    public BeanPerson(int idPersona, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, boolean trabajo, String contrasena, boolean estado) {
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.aPaterno = aPaterno;
