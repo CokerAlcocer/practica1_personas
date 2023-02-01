@@ -18,24 +18,9 @@ public class BeanPerson {
 
     public BeanPerson() {
     }
-    
-    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, boolean estadoCivil, String correo, String contrasena) {
-        this.idPerson = iduser;
-        this.nombre = nombre;
-        this.aPaterno = aPaterno;
-        this.aMaterno = aMaterno;
-        this.edad = edad;
-        this.sexo = sexo;
-        this.telefono = telefono;
-        this.direccion = direccion;
-        this.fechaNacimiento = fechaNacimiento;
-        this.estadoCivil = estadoCivil;
-        this.correo = correo;
-        this.contrasena = contrasena;
-    }
-    
-    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, String contrasena, boolean estado) {
-        this.idPerson = iduser;
+
+    public BeanPerson(int idPerson, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, String contrasena, boolean estado) {
+        this.idPerson = idPerson;
         this.nombre = nombre;
         this.aPaterno = aPaterno;
         this.aMaterno = aMaterno;

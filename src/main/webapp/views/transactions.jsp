@@ -50,10 +50,10 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-1 text-center fw-bold">#</div>
-                <div class="col-5 fw-bold">Nombre de la persona</div>
-                <div class="col-3 text-center fw-bold">Fecha de nacimiento</div>
-                <div class="col-1 text-center fw-bold">Género</div>
-                <div class="col-2 text-center fw-bold">Acciones</div>
+                <div class="col-4 fw-bold">Nombre de la persona</div>
+                <div class="col-3 text-center fw-bold">Fecha del movimiento</div>
+                <div class="col-2 text-center fw-bold">Tipo</div>
+                <div class="col-2 text-center fw-bold">Detalles</div>
             </div>
         </div>
     </div>
@@ -62,13 +62,11 @@
             <div class="card-body py-2 px-3">
                 <div class="row d-flex align-items-center">
                     <div class="col-1 text-center">1</div>
-                    <div class="col-5">Angel Yazveck Alcocer Durán</div>
-                    <div class="col-3 text-center">25/07/2002</div>
-                    <div class="col-1 text-center"><span class="col-12 badge bg-primary">Hombre</span></div>
+                    <div class="col-4">Angel Alcocer</div>
+                    <div class="col-3 text-center">01/02/2023</div>
+                    <div class="col-2 text-center"><span class="col-12 badge bg-success">CREATE</span></div>
                     <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
-                        <button class="btn btn-primary py-2"><i class="bi bi-info-circle-fill"></i></button>
-                        <button class="btn btn-primary py-2"><i class="bi bi-pencil-fill"></i></button>
-                        <button class="btn btn-danger py-2"><i class="bi bi-trash-fill"></i></button>
+                        <button class="btn btn-primary py-2" data-bs-target="#modalInfo" data-bs-toggle="modal"><i class="bi bi-eye-fill"></i></button>
                     </div>
                 </div>
             </div>
@@ -78,13 +76,53 @@
             <div class="card-body py-2 px-3">
                 <div class="row d-flex align-items-center">
                     <div class="col-1 text-center">2</div>
-                    <div class="col-5">Hayase Nagatoro</div>
-                    <div class="col-3 text-center">31/01/2004</div>
-                    <div class="col-1 text-center"><span class="col-12 badge bg-danger">Mujer</span></div>
+                    <div class="col-4">Angel Alcocer</div>
+                    <div class="col-3 text-center">01/02/2023</div>
+                    <div class="col-2 text-center"><span class="col-12 badge bg-primary">UPDATE</span></div>
                     <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
-                        <button class="btn btn-primary py-2"><i class="bi bi-info-circle-fill"></i></button>
-                        <button class="btn btn-primary py-2"><i class="bi bi-pencil-fill"></i></button>
-                        <button class="btn btn-danger py-2"><i class="bi bi-trash-fill"></i></button>
+                        <button class="btn btn-primary py-2"><i class="bi bi-eye-fill"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card col-12 mt-2">
+            <div class="card-body py-2 px-3">
+                <div class="row d-flex align-items-center">
+                    <div class="col-1 text-center">3</div>
+                    <div class="col-4">Angel Alcocer</div>
+                    <div class="col-3 text-center">01/02/2023</div>
+                    <div class="col-2 text-center"><span class="col-12 badge bg-danger">DELETE</span></div>
+                    <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
+                        <button class="btn btn-primary py-2"><i class="bi bi-eye-fill"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card col-12 mt-2">
+            <div class="card-body py-2 px-3">
+                <div class="row d-flex align-items-center">
+                    <div class="col-1 text-center">4</div>
+                    <div class="col-4">Angel Alcocer</div>
+                    <div class="col-3 text-center">01/02/2023</div>
+                    <div class="col-2 text-center"><span class="col-12 badge bg-dark">LOGIN</span></div>
+                    <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
+                        <button class="btn btn-primary py-2"><i class="bi bi-eye-fill"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card col-12 mt-2">
+            <div class="card-body py-2 px-3">
+                <div class="row d-flex align-items-center">
+                    <div class="col-1 text-center">5</div>
+                    <div class="col-4">Angel Alcocer</div>
+                    <div class="col-3 text-center">01/02/2023</div>
+                    <div class="col-2 text-center"><span class="col-12 badge bg-secondary">LOGOUT</span></div>
+                    <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
+                        <button class="btn btn-primary py-2"><i class="bi bi-eye-fill"></i></button>
                     </div>
                 </div>
             </div>
@@ -92,6 +130,29 @@
     </div>
 </div>
 <!--CONTENT-->
+
+<!--MODAL INFO-->
+<div class="modal fade" id="modalInfo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content border-0">
+            <div class="card">
+                <div class="card-header"><h4>Detalles del movimiento</h4></div>
+                <div class="card-body">
+                    <label for="">Tipo de movimiento</label>
+                    <span class="badge bg-success">CREATE</span>
+                </div>
+                <div class="card-footer text-end">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--MODAL INFO-->
+
+<!--SCRIPTS-->
+<script src="<%=context%>/assets/bootstrap/bootstrap.bundle.min.js"></script>
+<!--SCRIPTS-->
 
 </body>
 </html>
