@@ -1,6 +1,5 @@
 package utez.edu.mx.practica1.model.person;
 
-import java.util.Date;
 
 public class BeanPerson {
     private int idPerson;
