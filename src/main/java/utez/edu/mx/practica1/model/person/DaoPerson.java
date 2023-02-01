@@ -66,7 +66,7 @@ public class DaoPerson {
                         rs.getString("aMaterno");
                         rs.getInt("edad");
                         rs.getString("sexo");
-                        rs.getString()
+                        rs.getString("correo");
                 ));
             }
         } catch (SQLException ex) {
