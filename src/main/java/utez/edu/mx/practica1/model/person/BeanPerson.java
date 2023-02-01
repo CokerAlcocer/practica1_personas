@@ -2,7 +2,7 @@ package utez.edu.mx.practica1.model.person;
 
 
 public class BeanPerson {
-    private int iduser;
+    private int idPerson;
     private String nombre;
     private String aPaterno;
     private String aMaterno;
@@ -18,9 +18,9 @@ public class BeanPerson {
 
     public BeanPerson() {
     }
-
-    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, String contrasena) {
-        this.iduser = iduser;
+    
+    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, boolean estadoCivil, String correo, String contrasena) {
+        this.idPerson = iduser;
         this.nombre = nombre;
         this.aPaterno = aPaterno;
         this.aMaterno = aMaterno;
@@ -33,9 +33,9 @@ public class BeanPerson {
         this.correo = correo;
         this.contrasena = contrasena;
     }
-
+    
     public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, String contrasena, boolean estado) {
-        this.iduser = iduser;
+        this.idPerson = iduser;
         this.nombre = nombre;
         this.aPaterno = aPaterno;
         this.aMaterno = aMaterno;
@@ -50,12 +50,12 @@ public class BeanPerson {
         this.estado = estado;
     }
 
-    public int getIduser() {
-        return iduser;
+    public int getIdPerson() {
+        return idPerson;
     }
 
-    public void setIduser(int iduser) {
-        this.iduser = iduser;
+    public void setIdPerson(int idPerson) {
+        this.idPerson = idPerson;
     }
 
     public String getNombre() {

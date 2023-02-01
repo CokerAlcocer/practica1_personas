@@ -6,8 +6,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class DaoPerson {
     //Variables globales
     Connection con;
@@ -50,6 +48,36 @@ public class DaoPerson {
         return listPersons;
     }
 
+    // EncontrarTodos
+    public List<DaoPerson> findAll(){
+        List<DaoPerson> personas = new ArrayList<>();
+
+        try {
+            query = "SELECT * FROM persona";
+            con = ConnectionDB.getConnection();
+            stm = con.createStatement();
+            rs = stm.executeQuery(query);
+
+            while(rs.next()){
+                personas.add(new DaoPerson(
+                        rs.getInt("idPerson"),
+                        rs.getString("nombre"),
+                        rs.getString("aPaterno");
+                        rs.getString("aMaterno");
+                        rs.getInt("edad");
+                        rs.getString("sexo");
+                        rs.getString()
+                ));
+            }
+        } catch (SQLException ex) {
+            System.out.println("FA-ERR-002");
+        } finally {
+
+        }
+
+        return personas;
+    }
+    
     // EncontrarPorId
     public BeanPerson findById(int id){
         BeanPerson person = null;
