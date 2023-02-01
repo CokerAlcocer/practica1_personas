@@ -1,7 +1,6 @@
 package utez.edu.mx.practica1.controller;
 
 import com.google.gson.Gson;
-import utez.edu.mx.practica1.model.persona.BeanPerson;
 import utez.edu.mx.practica1.model.persona.DaoPerson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
