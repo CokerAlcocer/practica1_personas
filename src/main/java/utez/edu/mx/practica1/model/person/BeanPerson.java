@@ -11,16 +11,15 @@ public class BeanPerson {
     private String telefono;
     private String direccion;
     private String fechaNacimiento;
-    private boolean estadoCivil;
+    private String estadoCivil;
     private String correo;
-    private boolean trabajo;
     private String contrasena;
     private boolean estado;
 
     public BeanPerson() {
     }
 
-    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, boolean estadoCivil, String correo, String contrasena) {
+    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, String contrasena) {
         this.iduser = iduser;
         this.nombre = nombre;
         this.aPaterno = aPaterno;
@@ -35,7 +34,7 @@ public class BeanPerson {
         this.contrasena = contrasena;
     }
 
-    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, Date fechaNacimiento, boolean estadoCivil, String correo, String contrasena, boolean estado) {
+    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, String contrasena, boolean estado) {
         this.iduser = iduser;
         this.nombre = nombre;
         this.aPaterno = aPaterno;
@@ -123,11 +122,11 @@ public class BeanPerson {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public boolean isEstadoCivil() {
+    public String isEstadoCivil() {
         return estadoCivil;
     }
 
-    public void setEstadoCivil(boolean estadoCivil) {
+    public void setEstadoCivil(String estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
 
@@ -155,11 +154,4 @@ public class BeanPerson {
         this.estado = estado;
     }
 
-    public boolean isTrabajo() {
-        return trabajo;
-    }
-
-    public void setTrabajo(boolean trabajo) {
-        this.trabajo = trabajo;
-    }
 }

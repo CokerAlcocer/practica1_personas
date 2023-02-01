@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: CDS-UTEZ
@@ -7,7 +8,6 @@
 --%>
 <%String context = request.getContextPath();%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <html>
 <head>
     <link rel="stylesheet" href="<%=context%>/assets/bootstrap/bootstrap.min.css ">
@@ -43,7 +43,7 @@
     <!--NAVBAR-->
 
     <!--CONTENT-->
-    <div class="container mt-4">
+    <div class="container mt-4" onload="listarPersonas()">
         <h2>Listado de personas</h2>
         <hr>
         <div class="card border-0 shadow col-12">
@@ -58,40 +58,28 @@
             </div>
         </div>
         <div class="scrollable-custom">
-            <div class="card col-12 mt-2">
-                <div class="card-body py-2 px-3">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-1 text-center">1</div>
-                        <div class="col-5">Angel Yazveck Alcocer Durán</div>
-                        <div class="col-3 text-center">25/07/2002</div>
-                        <div class="col-1 text-center"><span class="col-12 badge bg-primary">Hombre</span></div>
-                        <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
-                            <button class="btn btn-primary py-2"><i class="bi bi-info-circle-fill"></i></button>
-                            <button class="btn btn-primary py-2"><i class="bi bi-pencil-fill"></i></button>
-                            <button class="btn btn-danger py-2"><i class="bi bi-trash-fill"></i></button>
+            <c:forEach items="${listPersonas}" var="persona">
+                <div class="card col-12 mt-2">
+                    <div class="card-body py-2 px-3">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-1 text-center">1</div>
+                            <div class="col-5">${persona.nombre} ${persona.aPaterno} ${persona.aMaterno}</div>
+                            <div class="col-3 text-center">${persona.fechaNacimiento}</div>
+                            <div class="col-1 text-center"><span class="col-12 badge bg-primary">${persona.sexo}</span></div>
+                            <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
+                                <button class="btn btn-primary py-2"><i class="bi bi-info-circle-fill"></i></button>
+                                <button class="btn btn-primary py-2"><i class="bi bi-pencil-fill"></i></button>
+                                <button class="btn btn-danger py-2"><i class="bi bi-trash-fill"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="card col-12 mt-2">
-                <div class="card-body py-2 px-3">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-1 text-center">2</div>
-                        <div class="col-5">Hayase Nagatoro</div>
-                        <div class="col-3 text-center">31/01/2004</div>
-                        <div class="col-1 text-center"><span class="col-12 badge bg-danger">Mujer</span></div>
-                        <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
-                            <button class="btn btn-primary py-2"><i class="bi bi-info-circle-fill"></i></button>
-                            <button class="btn btn-primary py-2"><i class="bi bi-pencil-fill"></i></button>
-                            <button class="btn btn-danger py-2"><i class="bi bi-trash-fill"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
         </div>
     </div>
     <!--CONTENT-->
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="<%=context%>/assets/js/register.js"></script>
 </body>
 </html>

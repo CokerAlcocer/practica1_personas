@@ -76,7 +76,7 @@ public class ServletPerson {
                 estado = Boolean.parseBoolean(request.getParameter("txtestado"));
 
                 persona = new BeanPerson (idPersona,nombre,aPaterno,aMaterno,edad,sexo,telefono,
-                        direccion,fechaNacimiento,estadoCivil,correo,trabajo,contrasena,estado);
+                        direccion,fechaNacimiento,estadoCivil,correo,contrasena,estado);
                 daoPersona.create(persona);
                 request.getRequestDispatcher("ServletPersona?action=findAll").forward(request,response);
                 break;
@@ -94,12 +94,11 @@ public class ServletPerson {
                     fechaNacimiento = request.getParameter("txtUfechanacimiento");
                     estadoCivil = request.getParameter("txtUestadocivil");
                     correo = request.getParameter("txtUcorreo");
-                    trabajo = Boolean.parseBoolean(request.getParameter("txtUtrabajo"));
                     contrasena = request.getParameter("txtUcontrasena");
                     estado = Boolean.parseBoolean(request.getParameter("txtUestado"));
 
                     persona = new BeanPerson(idPersona,nombre,aPaterno,aMaterno,edad,sexo,telefono,
-                            direccion,fechaNacimiento,estadoCivil,correo,trabajo,contrasena,estado);
+                            direccion,fechaNacimiento,estadoCivil,correo,contrasena,estado);
                     daoPersona.create(persona);
 
                     request.getRequestDispatcher("ServletPersona?action=findAll").forward(request,response);
