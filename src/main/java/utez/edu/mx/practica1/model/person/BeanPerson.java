@@ -13,6 +13,7 @@ public class BeanPerson {
     private String fechaNacimiento;
     private boolean estadoCivil;
     private String correo;
+    private boolean trabajo;
     private String contrasena;
     private boolean estado;
 
@@ -136,5 +137,13 @@ public class BeanPerson {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    public boolean isTrabajo() {
+        return trabajo;
+    }
+
+    public void setTrabajo(boolean trabajo) {
+        this.trabajo = trabajo;
     }
 }

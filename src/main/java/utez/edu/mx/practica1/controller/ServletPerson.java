@@ -1,7 +1,8 @@
 package utez.edu.mx.practica1.controller;
 
 import com.google.gson.Gson;
-import utez.edu.mx.practica1.model.persona.DaoPerson;
+import utez.edu.mx.practica1.model.person.DaoPerson;
+import utez.edu.mx.practica1.model.person.BeanPerson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -74,7 +75,7 @@ public class ServletPerson {
                 contrasena = request.getParameter("txtcontrasena");
                 estado = Boolean.parseBoolean(request.getParameter("txtestado"));
 
-                persona = new BeanPerson(idPersona,nombre,aPaterno,aMaterno,edad,sexo,telefono,
+                persona = new BeanPerson (idPersona,nombre,aPaterno,aMaterno,edad,sexo,telefono,
                         direccion,fechaNacimiento,estadoCivil,correo,trabajo,contrasena,estado);
                 daoPersona.create(persona);
                 request.getRequestDispatcher("ServletPersona?action=findAll").forward(request,response);
