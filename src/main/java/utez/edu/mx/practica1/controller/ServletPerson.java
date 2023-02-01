@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "ServletPersona",value = "/ServletPersona")
-public class ServletPerson {
+public class ServletPerson extends HttpServlet{
     private Map map = new HashMap();
     final private Logger log = LoggerFactory.getLogger(ServletPerson.class);
     DaoPerson daoPersona = new DaoPerson();

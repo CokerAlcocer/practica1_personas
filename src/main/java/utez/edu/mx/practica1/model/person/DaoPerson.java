@@ -22,12 +22,12 @@ public class DaoPerson {
         List<BeanPerson> listPersons = new ArrayList<>();
         try{
             con = ConnectionDB.getConnection();
-            pstm = con.prepareStatement("SELECT * FROM personas");
+            pstm = con.prepareStatement("SELECT * FROM persona");
             rs = pstm.executeQuery();
             while (rs.next()) {
                 BeanPerson person = new BeanPerson();
 
-                person.setIduser(rs.getInt("idUser"));
+                person.setIduser(rs.getInt("idPersona"));
                 person.setNombre(rs.getString("nombre"));
                 person.setaPaterno(rs.getString("aPaterno"));
                 person.setaMaterno(rs.getString("aMaterno"));
@@ -55,13 +55,13 @@ public class DaoPerson {
         BeanPerson person = null;
         try {
             con = ConnectionDB.getConnection();
-            pstm = con.prepareStatement("SELECT * FROM personas WHERE idUser=?");
+            pstm = con.prepareStatement("SELECT * FROM persona WHERE idPersona=?");
             pstm.setInt(1,id);
             rs = pstm.executeQuery();
 
             person = new BeanPerson();
 
-            person.setIduser(rs.getInt("idUser"));
+            person.setIduser(rs.getInt("idPersona"));
             person.setNombre(rs.getString("nombre"));
             person.setaPaterno(rs.getString("aPaterno"));
             person.setaMaterno(rs.getString("aMaterno"));
@@ -187,7 +187,7 @@ public class DaoPerson {
         int idPersona = 8;
         //daoP.update(persona1);
         //daoP.delete(idPersona);
-        System.out.println(daoP.update(persona1));
+        System.out.println(daoP.findAll());
 
     }
 }

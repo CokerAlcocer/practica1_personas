@@ -6,8 +6,8 @@ const listarPersonas = () =>{
         type: 'GET',
         url: contextPath + '/ServletPersona?action=findAll'
     }).done(function(response){
-        console.log(response);
-        let listPersonas = response;
+        console.log(response.ListPersonas);
+        let listPersonas = response.ListPersonas;
     })
 }
 
