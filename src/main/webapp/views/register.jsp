@@ -16,6 +16,7 @@
     <title>Register</title>
 </head>
 <body>
+<jsp:include page="/ServletPersona?action=findAll" />
 
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -57,8 +58,8 @@
                 </div>
             </div>
         </div>
-        <div class="scrollable-custom">
-            <c:forEach items="${listPersonas}" var="persona">
+        <div class="scrollable-custom" id="personList">
+            <c:forEach items="${ListPersonas}" var="persona">
                 <div class="card col-12 mt-2">
                     <div class="card-body py-2 px-3">
                         <div class="row d-flex align-items-center">
@@ -77,6 +78,58 @@
             </c:forEach>
         </div>
     </div>
+
+
+<!--MODALS-->
+<div class="modal fade" id="ModalRegistrar" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content col-sm-12">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Registrar Persona</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" id="frmRegistrar" method="POST" action="${context}/ServletPersona">
+                    <input type="hidden" name="action" value="create">
+                    <div class="col-sm-7">
+                        <label  class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="txtnombre" name="txtnombre">
+                    </div>
+                    <div class="col-sm-5">
+                        <label  class="col-form-label">Apellido Paterno</label>
+                        <input type="text" class="form-control" id="txtapaterno" name="txtapaterno">
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="col-form-label">Apellido Materno</label>
+                        <input type="text" class="form-control" id="txtamaterno" name="txtamaterno">
+                    </div>
+                    <div class="col-sm-12">
+                        <label  class="col-form-label">Edad</label>
+                        <input type="text" class="form-control" id="txtedad" name="txtedad">
+                    </div>
+                    <div class="col-sm-4">
+                        <label  class="col-form-label">Sexo</label>
+                        <input type="text" class="form-control" id="txtsexo" name="txtsexo">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="txtestado1" class="col-form-label">Estado:</label>
+                        <input type="" class="form-control" id="txtestado1" name="estado">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="txtpais1" class="col-form-label">Pais:</label>
+                        <input type="text" class="form-control" id="txtpais1" name="pais">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btn-guardar1">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <!--CONTENT-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
