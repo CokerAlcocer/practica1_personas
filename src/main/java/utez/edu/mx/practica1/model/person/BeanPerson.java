@@ -35,6 +35,22 @@ public class BeanPerson {
         this.contrasena = contrasena;
     }
 
+    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, Date fechaNacimiento, boolean estadoCivil, String correo, String contrasena, boolean estado) {
+        this.iduser = iduser;
+        this.nombre = nombre;
+        this.aPaterno = aPaterno;
+        this.aMaterno = aMaterno;
+        this.edad = edad;
+        this.sexo = sexo;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.fechaNacimiento = fechaNacimiento;
+        this.estadoCivil = estadoCivil;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.estado = estado;
+    }
+
     public int getIduser() {
         return iduser;
     }
