@@ -11,14 +11,14 @@ public class BeanPerson {
     private String telefono;
     private String direccion;
     private String fechaNacimiento;
-    private boolean estadoCivil;
+    private String estadoCivil;
     private String correo;
     private String contrasena;
     private boolean estado;
 
     public BeanPerson() {
     }
-
+    
     public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, boolean estadoCivil, String correo, String contrasena) {
         this.idPerson = iduser;
         this.nombre = nombre;
@@ -32,6 +32,22 @@ public class BeanPerson {
         this.estadoCivil = estadoCivil;
         this.correo = correo;
         this.contrasena = contrasena;
+    }
+    
+    public BeanPerson(int iduser, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, String contrasena, boolean estado) {
+        this.idPerson = iduser;
+        this.nombre = nombre;
+        this.aPaterno = aPaterno;
+        this.aMaterno = aMaterno;
+        this.edad = edad;
+        this.sexo = sexo;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.fechaNacimiento = fechaNacimiento;
+        this.estadoCivil = estadoCivil;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.estado = estado;
     }
 
     public int getIdPerson() {
@@ -106,11 +122,11 @@ public class BeanPerson {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public boolean isEstadoCivil() {
+    public String isEstadoCivil() {
         return estadoCivil;
     }
 
-    public void setEstadoCivil(boolean estadoCivil) {
+    public void setEstadoCivil(String estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
 
@@ -137,4 +153,5 @@ public class BeanPerson {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
 }

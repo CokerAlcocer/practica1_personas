@@ -1,0 +1,6 @@
+.scrollable-custom {
+    height: calc(100vh - 230px);
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

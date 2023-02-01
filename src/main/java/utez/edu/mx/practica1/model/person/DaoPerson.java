@@ -20,12 +20,12 @@ public class DaoPerson {
         List<BeanPerson> listPersons = new ArrayList<>();
         try{
             con = ConnectionDB.getConnection();
-            pstm = con.prepareStatement("SELECT * FROM personas");
+            pstm = con.prepareStatement("SELECT * FROM persona");
             rs = pstm.executeQuery();
             while (rs.next()) {
                 BeanPerson person = new BeanPerson();
 
-                person.setIduser(rs.getInt("idUser"));
+                person.setIduser(rs.getInt("idPersona"));
                 person.setNombre(rs.getString("nombre"));
                 person.setaPaterno(rs.getString("aPaterno"));
                 person.setaMaterno(rs.getString("aMaterno"));
@@ -34,7 +34,7 @@ public class DaoPerson {
                 person.setTelefono(rs.getString("telefono"));
                 person.setDireccion(rs.getString("direccion"));
                 person.setFechaNacimiento(rs.getString("fechaNacimiento"));
-                person.setEstadoCivil(rs.getBoolean("estadoCivil"));
+                person.setEstadoCivil(rs.getString("estadoCivil"));
                 person.setCorreo(rs.getString("correo"));
                 person.setContrasena(rs.getString("contrasena"));
 
@@ -83,13 +83,13 @@ public class DaoPerson {
         BeanPerson person = null;
         try {
             con = ConnectionDB.getConnection();
-            pstm = con.prepareStatement("SELECT * FROM personas WHERE idUser=?");
+            pstm = con.prepareStatement("SELECT * FROM persona WHERE idPersona=?");
             pstm.setInt(1,id);
             rs = pstm.executeQuery();
 
             person = new BeanPerson();
 
-            person.setIduser(rs.getInt("idUser"));
+            person.setIduser(rs.getInt("idPersona"));
             person.setNombre(rs.getString("nombre"));
             person.setaPaterno(rs.getString("aPaterno"));
             person.setaMaterno(rs.getString("aMaterno"));
@@ -98,7 +98,7 @@ public class DaoPerson {
             person.setTelefono(rs.getString("telefono"));
             person.setDireccion(rs.getString("direccion"));
             person.setFechaNacimiento(rs.getString("fechaNacimiento"));
-            person.setEstadoCivil(rs.getBoolean("estadoCivil"));
+            person.setEstadoCivil(rs.getString("estadoCivil"));
             person.setCorreo(rs.getString("correo"));
             person.setContrasena(rs.getString("contrasena"));
 
@@ -117,7 +117,7 @@ public class DaoPerson {
 
         try{
             con = ConnectionDB.getConnection();
-            pstm = con.prepareStatement("INSERT INTO personas(nombre,aPaterno,aMaterno,edad,sexo,telefono,direccion,fechaNacimiento,estadoCivil,correo,contrasena) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
+            pstm = con.prepareStatement("INSERT INTO persona(nombre,aPaterno,aMaterno,edad,sexo,telefono,direccion,fechaNacimiento,estadoCivil,correo,contrasena) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
             pstm.setString(1,person.getNombre());
             pstm.setString(2,person.getaPaterno());
             pstm.setString(3,person.getaMaterno());
@@ -126,12 +126,12 @@ public class DaoPerson {
             pstm.setString(6,person.getTelefono());
             pstm.setString(7,person.getDireccion());
             pstm.setString(8,person.getFechaNacimiento());
-            pstm.setBoolean(9,person.isEstadoCivil());
+            pstm.setString(9,person.isEstadoCivil());
             pstm.setString(10,person.getCorreo());
             pstm.setString(11,person.getContrasena());
 
             flag = pstm.execute();
-            
+
         }catch (SQLException e){
             e.getMessage();
         }finally {
@@ -145,7 +145,7 @@ public class DaoPerson {
         boolean flag = false;
         try{
             con = ConnectionDB.getConnection();
-            pstm = con.prepareStatement("UPDATE personas SET nombre=?,aPaterno=?,aMaterno=?,edad=?,sexo=?,telefono=?,direccion=?,fechaNacimiento=?,estadoCivil=?,correo=?,contrasena=? WHERE idUser=?");
+            pstm = con.prepareStatement("UPDATE persona SET nombre=?,aPaterno=?,aMaterno=?,edad=?,sexo=?,telefono=?,direccion=?,fechaNacimiento=?,estadoCivil=?,correo=?,contrasena=? WHERE idPersona=?");
 
             pstm.setString(1,person.getNombre());
             pstm.setString(2,person.getaPaterno());
@@ -155,7 +155,7 @@ public class DaoPerson {
             pstm.setString(6,person.getTelefono());
             pstm.setString(7,person.getDireccion());
             pstm.setString(8,person.getFechaNacimiento());
-            pstm.setBoolean(9,person.isEstadoCivil());
+            pstm.setString(9,person.isEstadoCivil());
             pstm.setString(10,person.getCorreo());
             pstm.setString(11,person.getContrasena());
             pstm.setInt(12,person.getIduser());
@@ -174,7 +174,7 @@ public class DaoPerson {
     public void delete_logic(int id){
         try{
             con = ConnectionDB.getConnection();
-            pstm = con.prepareCall("UPDATE personas SET estado=false WHERE idUser=?");
+            pstm = con.prepareCall("UPDATE persona SET estado=false WHERE idPersona=?");
 
             pstm.setInt(1,id);
 
@@ -186,18 +186,36 @@ public class DaoPerson {
         }
     }
     // Delete
-    public void delete(int id){
+    public boolean delete(int id){
+        boolean flag=false;
         try{
             con = ConnectionDB.getConnection();
-            pstm = con.prepareCall("DELETE FROM personas WHERE idUser=?");
+            pstm = con.prepareCall("DELETE FROM persona WHERE idPersona=?");
 
             pstm.setInt(1,id);
 
-            pstm.executeUpdate();
+            flag=pstm.executeUpdate() == 1;
         }catch(SQLException e){
            e.getMessage();
         }finally {
             ConnectionDB.closeConnections(con,pstm);
         }
+        return flag;
+    }
+
+    public static void main(String[] args) throws SQLException {
+        DaoPerson daoP = new DaoPerson();
+        BeanPerson persona = new BeanPerson(0,"Sergio","Cortes","Popoca",25,
+                "Masculino","7775957459","Las Rosas #13","2000-09-12","Soltero",
+                "sergiocortes518@gmail.com","1234t",true);
+        BeanPerson persona1 = new BeanPerson(1,"Sergio","Alonso","Uribe",25,
+                "Masculino","7775957459","Las Rosas #13","2000-09-12","Soltero",
+                "sergiocortes518@gmail.com","1234t",true);
+        //daoP.create(persona);
+        int idPersona = 8;
+        //daoP.update(persona1);
+        //daoP.delete(idPersona);
+        System.out.println(daoP.findAll());
+
     }
 }
