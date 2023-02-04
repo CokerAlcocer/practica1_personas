@@ -2,25 +2,17 @@ package utez.edu.mx.practica1.model.person;
 
 
 public class BeanPerson {
-    private int idPerson;
-    private String nombre;
-    private String aPaterno;
-    private String aMaterno;
+    private Long id;
+    private String nombre, aPaterno, aMaterno;
     private int edad;
-    private String sexo;
-    private String telefono;
-    private String direccion;
-    private String fechaNacimiento;
-    private String estadoCivil;
-    private String correo;
-    private String contrasena;
+    private String sexo, telefono, direccion, fechaNacimiento, estadoCivil, correo, contrasena;
     private boolean estado;
 
     public BeanPerson() {
     }
 
-    public BeanPerson(int idPerson, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, String contrasena, boolean estado) {
-        this.idPerson = idPerson;
+    public BeanPerson(Long id, String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, String contrasena, boolean estado) {
+        this.id = id;
         this.nombre = nombre;
         this.aPaterno = aPaterno;
         this.aMaterno = aMaterno;
@@ -35,12 +27,39 @@ public class BeanPerson {
         this.estado = estado;
     }
 
-    public int getIdPerson() {
-        return idPerson;
+    public BeanPerson(String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, String contrasena) {
+        this.nombre = nombre;
+        this.aPaterno = aPaterno;
+        this.aMaterno = aMaterno;
+        this.edad = edad;
+        this.sexo = sexo;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.fechaNacimiento = fechaNacimiento;
+        this.estadoCivil = estadoCivil;
+        this.correo = correo;
+        this.contrasena = contrasena;
     }
 
-    public void setIdPerson(int idPerson) {
-        this.idPerson = idPerson;
+    public BeanPerson(String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo) {
+        this.nombre = nombre;
+        this.aPaterno = aPaterno;
+        this.aMaterno = aMaterno;
+        this.edad = edad;
+        this.sexo = sexo;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.fechaNacimiento = fechaNacimiento;
+        this.estadoCivil = estadoCivil;
+        this.correo = correo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -107,7 +126,7 @@ public class BeanPerson {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String isEstadoCivil() {
+    public String getEstadoCivil() {
         return estadoCivil;
     }
 
@@ -139,4 +158,22 @@ public class BeanPerson {
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return "BeanPerson{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", aPaterno='" + aPaterno + '\'' +
+                ", aMaterno='" + aMaterno + '\'' +
+                ", edad=" + edad +
+                ", sexo='" + sexo + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", estadoCivil='" + estadoCivil + '\'' +
+                ", correo='" + correo + '\'' +
+                ", contrasena='" + contrasena + '\'' +
+                ", estado=" + estado +
+                '}';
+    }
 }

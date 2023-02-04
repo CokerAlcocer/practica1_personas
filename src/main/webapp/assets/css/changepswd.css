@@ -1,0 +1,68 @@
+html {
+    font-family: sans-serif;
+}
+body{
+    background: url(../img/fondo.jpg) no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    height: 100%;
+}
+.input-group-text{
+    padding: 0.75rem 0.75rem !important;
+}
+.login-page {
+    width: 460px;
+    padding: 3% 0 0;
+    margin: auto;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background: #3a3939;
+    max-width: 450px;
+    padding: 40px;
+    padding-top: 20px;
+    padding-bottom: 1px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(6, 51, 4, 0.976), 0 5px 5px 0 rgb(13, 250, 0);
+    color: white;
+}
+
+.form button {
+    font-family: sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: rgb(102, 107, 120);
+    width: 70%;
+    border: 1px solid white;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+.form button:hover,
+.form button:active,
+.form button:focus {
+    background: rgb(51, 51, 58);
+    transition: 0.3s;
+}
+
+i#return_back{
+    position: absolute;
+    z-index: 99;
+    font-size: 4em;
+    padding: 0%;
+    top: 0%;
+    left: 5%;
+    color: #ffffff;
+}
+
+i#return_back:hover{
+    color: #3a3939;
+}
