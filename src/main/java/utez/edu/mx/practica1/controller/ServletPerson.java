@@ -34,7 +34,7 @@ public class ServletPerson extends HttpServlet{
 
 
         //varibles para manipulacion de persona
-        int idPersona;
+        Long idPersona;
         String nombre,aPaterno,aMaterno;
         int edad;
         String sexo;
@@ -58,14 +58,14 @@ public class ServletPerson extends HttpServlet{
                 request.setAttribute("ListPersonas",listPersonas);
                 break;
             case "findById":
-                idPersona = Integer.parseInt(request.getParameter("txtidpersona"));
+                idPersona = Long.parseLong(request.getParameter("txtidpersona"));
                 persona = daoPersona.findById(idPersona);
 //                map.put("personaUnica",persona);
 //                write(response,map);
                 request.setAttribute("UniquePerson",persona);
                 break;
             case "create":
-                idPersona = Integer.parseInt(request.getParameter("txtidpersona"));
+                idPersona = Long.parseLong(request.getParameter("txtidpersona"));
                 nombre = request.getParameter("txtnombre");
                 aPaterno = request.getParameter("txtapaterno");
                 aMaterno = request.getParameter("txtamaterno");
@@ -88,7 +88,7 @@ public class ServletPerson extends HttpServlet{
             case "update":
                 try {
 
-                    idPersona = Integer.parseInt(request.getParameter("txtidpersona"));
+                    idPersona = Long.parseLong(request.getParameter("txtidpersona"));
                     nombre = request.getParameter("txtUnombre");
                     aPaterno = request.getParameter("txtUapaterno");
                     aMaterno = request.getParameter("txtUamaterno");
@@ -115,7 +115,7 @@ public class ServletPerson extends HttpServlet{
             case "delete":
                 try {
 
-                    idPersona = Integer.parseInt(request.getParameter("txtidpersona"));
+                    idPersona = Long.parseLong(request.getParameter("txtidpersona"));
                     daoPersona.delete(idPersona);
 
                     request.getRequestDispatcher("ServletPersona?action=findAll").forward(request,response);
