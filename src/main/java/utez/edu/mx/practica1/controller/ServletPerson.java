@@ -65,7 +65,7 @@ public class ServletPerson extends HttpServlet{
                 request.setAttribute("UniquePerson",persona);
                 break;
             case "create":
-                idPersona = Long.parseLong(request.getParameter("txtidpersona"));
+                //idPersona = Long.parseLong(request.getParameter("txtidpersona"));
                 nombre = request.getParameter("txtnombre");
                 aPaterno = request.getParameter("txtapaterno");
                 aMaterno = request.getParameter("txtamaterno");
@@ -76,11 +76,10 @@ public class ServletPerson extends HttpServlet{
                 fechaNacimiento = request.getParameter("txtfechanacimiento");
                 estadoCivil = request.getParameter("txtestadocivil");
                 correo = request.getParameter("txtcorreo");
-                trabajo = Boolean.parseBoolean(request.getParameter("txttrabajo"));
                 contrasena = request.getParameter("txtcontrasena");
                 estado = Boolean.parseBoolean(request.getParameter("txtestado"));
 
-                persona = new BeanPerson (idPersona,nombre,aPaterno,aMaterno,edad,sexo,telefono,
+                persona = new BeanPerson (nombre,aPaterno,aMaterno,edad,sexo,telefono,
                         direccion,fechaNacimiento,estadoCivil,correo,contrasena,estado);
                 daoPersona.create(persona);
                 request.getRequestDispatcher("ServletPersona?action=findAll").forward(request,response);

@@ -41,7 +41,7 @@ public class BeanPerson {
         this.contrasena = contrasena;
     }
 
-    public BeanPerson(String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo) {
+    public BeanPerson(String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, String contrasena, boolean estado) {
         this.nombre = nombre;
         this.aPaterno = aPaterno;
         this.aMaterno = aMaterno;
@@ -52,6 +52,8 @@ public class BeanPerson {
         this.fechaNacimiento = fechaNacimiento;
         this.estadoCivil = estadoCivil;
         this.correo = correo;
+        this.contrasena = contrasena;
+        this.estado = estado;
     }
 
     public Long getId() {

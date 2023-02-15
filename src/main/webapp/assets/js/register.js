@@ -1,4 +1,3 @@
-
 const listarPersonas = () =>{
     const contextPath = window.location.origin + window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
     console.log("Path",contextPath)
@@ -10,6 +9,14 @@ const listarPersonas = () =>{
         let listPersonas = response.ListPersonas;
     })
 }
+
+
+    $('#btn-guardar1').on('click', function () {
+
+        $('#frmRegistrar').submit();
+    });
+
+
 
 window.onload = function(){
     listarPersonas()

@@ -94,8 +94,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="row g-3" id="frmRegistrar" method="POST" action="${context}/ServletPersona">
-                    <input type="hidden" name="action" value="create">
+                <form class="row g-3" id="frmRegistrar" method="POST" action="${context}/ServletPersona?action=create">
                     <div class="col-sm-7">
                         <label  class="col-form-label">Nombre:</label>
                         <input type="text" class="form-control" id="txtnombre" name="txtnombre">
