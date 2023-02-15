@@ -1,11 +1,11 @@
 package utez.edu.mx.practica1.controller;
 
 import com.google.gson.Gson;
-import utez.edu.mx.practica1.model.person.DaoPerson;
-import utez.edu.mx.practica1.model.person.BeanPerson;
+import utez.edu.mx.practica1.model.person.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,9 +30,11 @@ public class ServletPerson extends HttpServlet{
         request.setCharacterEncoding("UTF-8");
         //request.getRequestDispatcher("/views/index.jsp").forward(request, response);
         //obtener la ruta segun lo requerido
+        //request.setAttribute("message", "hello");
+
 
         //varibles para manipulacion de persona
-        int idPersona;
+        Long idPersona;
         String nombre,aPaterno,aMaterno;
         int edad;
         String sexo;
@@ -50,18 +52,20 @@ public class ServletPerson extends HttpServlet{
         switch (action){
             case "findAll":
                 List<BeanPerson> listPersonas = daoPersona.findAll();
-                map.put("ListPersonas",listPersonas);
-                write(response,map);
-                map.clear();
+//                map.put("ListPersonas",listPersonas);
+//                write(response,map);
+//                map.clear();
+                request.setAttribute("ListPersonas",listPersonas);
                 break;
             case "findById":
-                idPersona = Integer.parseInt(request.getParameter("txtidpersona"));
+                idPersona = Long.parseLong(request.getParameter("txtidpersona"));
                 persona = daoPersona.findById(idPersona);
-                map.put("personaUnica",persona);
-                write(response,map);
+//                map.put("personaUnica",persona);
+//                write(response,map);
+                request.setAttribute("UniquePerson",persona);
                 break;
             case "create":
-                idPersona = Integer.parseInt(request.getParameter("txtidpersona"));
+                idPersona = Long.parseLong(request.getParameter("txtidpersona"));
                 nombre = request.getParameter("txtnombre");
                 aPaterno = request.getParameter("txtapaterno");
                 aMaterno = request.getParameter("txtamaterno");
@@ -84,7 +88,7 @@ public class ServletPerson extends HttpServlet{
             case "update":
                 try {
 
-                    idPersona = Integer.parseInt(request.getParameter("txtidpersona"));
+                    idPersona = Long.parseLong(request.getParameter("txtidpersona"));
                     nombre = request.getParameter("txtUnombre");
                     aPaterno = request.getParameter("txtUapaterno");
                     aMaterno = request.getParameter("txtUamaterno");
@@ -111,7 +115,7 @@ public class ServletPerson extends HttpServlet{
             case "delete":
                 try {
 
-                    idPersona = Integer.parseInt(request.getParameter("txtidpersona"));
+                    idPersona = Long.parseLong(request.getParameter("txtidpersona"));
                     daoPersona.delete(idPersona);
 
                     request.getRequestDispatcher("ServletPersona?action=findAll").forward(request,response);

@@ -16,6 +16,7 @@
     <title>Register</title>
 </head>
 <body>
+<jsp:include page="/ServletPersona?action=findAll" />
 
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -57,8 +58,8 @@
                 </div>
             </div>
         </div>
-        <div class="scrollable-custom">
-            <c:forEach items="${listPersonas}" var="persona">
+        <div class="scrollable-custom" id="personList">
+            <c:forEach items="${ListPersonas}" var="persona">
                 <div class="card col-12 mt-2">
                     <div class="card-body py-2 px-3">
                         <div class="row d-flex align-items-center">

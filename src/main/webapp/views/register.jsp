@@ -16,6 +16,7 @@
     <title>Register</title>
 </head>
 <body>
+<jsp:include page="/ServletPersona?action=findAll" />
 
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -43,8 +44,13 @@
     <!--NAVBAR-->
 
     <!--CONTENT-->
-    <div class="container mt-4" onload="listarPersonas()">
+    <div class="container mt-4" >
         <h2>Listado de personas</h2>
+        <div class="row">
+            <div class="col align-content-end" >
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalRegistrar">Registrar</button>
+            </div>
+        </div>
         <hr>
         <div class="card border-0 shadow col-12">
             <div class="card-body">
@@ -57,8 +63,8 @@
                 </div>
             </div>
         </div>
-        <div class="scrollable-custom">
-            <c:forEach items="${listPersonas}" var="persona">
+        <div class="scrollable-custom" id="personList">
+            <c:forEach items="${ListPersonas}" var="persona">
                 <div class="card col-12 mt-2">
                     <div class="card-body py-2 px-3">
                         <div class="row d-flex align-items-center">
@@ -67,9 +73,9 @@
                             <div class="col-3 text-center">${persona.fechaNacimiento}</div>
                             <div class="col-1 text-center"><span class="col-12 badge bg-primary">${persona.sexo}</span></div>
                             <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
-                                <button class="btn btn-primary py-2"><i class="bi bi-info-circle-fill"></i></button>
-                                <button class="btn btn-primary py-2"><i class="bi bi-pencil-fill"></i></button>
-                                <button class="btn btn-danger py-2"><i class="bi bi-trash-fill"></i></button>
+                                <button class="btn btn-primary py-2" data-bs-toggle="modal" data-bs-target="#modalInformacion"><i class="bi bi-info-circle-fill"></i></button>
+                                <button class="btn btn-primary py-2" data-bs-toggle="modal" data-bs-target="#modalActualizar"><i class="bi bi-pencil-fill"></i></button>
+                                <button class="btn btn-danger py-2" data-bs-toggle="modal" data-bs-target="#modalEliminar"><i class="bi bi-trash-fill"></i></button>
                             </div>
                         </div>
                     </div>
@@ -77,6 +83,249 @@
             </c:forEach>
         </div>
     </div>
+
+
+<!--MODALS-->
+<div class="modal fade" id="ModalRegistrar" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content col-sm-12">
+            <div class="modal-header bg-success">
+                <h5 class="modal-title" id="exampleModalLabel1">Registrar Persona</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" id="frmRegistrar" method="POST" action="${context}/ServletPersona">
+                    <input type="hidden" name="action" value="create">
+                    <div class="col-sm-7">
+                        <label  class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="txtnombre" name="txtnombre">
+                    </div>
+                    <div class="col-sm-5">
+                        <label  class="col-form-label">Apellido Paterno</label>
+                        <input type="text" class="form-control" id="txtapaterno" name="txtapaterno">
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="col-form-label">Apellido Materno</label>
+                        <input type="text" class="form-control" id="txtamaterno" name="txtamaterno">
+                    </div>
+                    <div class="col-sm-4">
+                        <label  class="col-form-label">Edad</label>
+                        <input type="number" class="form-control" id="txtedad" name="txtedad">
+                    </div>
+                    <div class="col-sm-4">
+                        <label  class="col-form-label">Sexo</label>
+                        <input type="text" class="form-control" id="txtsexo" name="txtsexo">
+                    </div>
+                    <div class="col-sm-4">
+                        <label  class="col-form-label">Telefono</label>
+                        <input type="number" class="form-control" id="txttelefono" name="txttelefono">
+                    </div>
+                    <div class="col-sm-8">
+                        <label  class="col-form-label">Dirección</label>
+                        <input type="text" class="form-control" id="txtdireccion" name="txtdireccion">
+                    </div>
+                    <div class="col-sm-6">
+                        <label  class="col-form-label">Fecha Nacimiento</label>
+                        <input type="date" class="form-control" id="txtfechanacimiento" name="txtfechanacimiento">
+                    </div>
+                    <div class="col-sm-6">
+                        <label  class="col-form-label">Estado Civil</label>
+                        <input type="text" class="form-control" id="txtestadicivil" name="txtestadocivil">
+                    </div>
+                    <div class="col-sm-5">
+                        <label  class="col-form-label">Correo</label>
+                        <input type="email" class="form-control" id="txtcorreo" name="txtcorreo">
+                    </div>
+                    <div class="col-sm-4">
+                        <label  class="col-form-label">Contraseña</label>
+                        <input type="email" class="form-control" id="txtcontrasena" name="txtcontrasena">
+                    </div>
+                    <div class="col-sm-3">
+                        <label  class="col-form-label">Estado:</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="txtestado" name="txtestado">
+                        </div>
+<%--                        <input type="radio" class="form-control" id="txtestado" name="txtestado">--%>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-success" id="btn-guardar1">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalActualizar" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content col-sm-12">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title" id="exampleModalLabel2">Actualizar Persona</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" id="frmActualizar" method="POST" action="${context}/ServletPersona">
+                    <input type="hidden" name="action" value="create">
+                    <input type="hidden" name="txtIdPersona" value="txtIdPersona">
+                    <div class="col-sm-7">
+                        <label  class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="txtnombreU" name="txtnombreU">
+                    </div>
+                    <div class="col-sm-5">
+                        <label  class="col-form-label">Apellido Paterno</label>
+                        <input type="text" class="form-control" id="txtapaternoU" name="txtapaternoU">
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="col-form-label">Apellido Materno</label>
+                        <input type="text" class="form-control" id="txtamaternoU" name="txtamaternoU">
+                    </div>
+                    <div class="col-sm-4">
+                        <label  class="col-form-label">Edad</label>
+                        <input type="number" class="form-control" id="txtedadU" name="txtedadU">
+                    </div>
+                    <div class="col-sm-4">
+                        <label  class="col-form-label">Sexo</label>
+                        <input type="text" class="form-control" id="txtsexoU" name="txtsexoU">
+                    </div>
+                    <div class="col-sm-4">
+                        <label  class="col-form-label">Telefono</label>
+                        <input type="number" class="form-control" id="txttelefonoU" name="txttelefonoU">
+                    </div>
+                    <div class="col-sm-8">
+                        <label  class="col-form-label">Dirección</label>
+                        <input type="text" class="form-control" id="txtdireccionU" name="txtdireccionU">
+                    </div>
+                    <div class="col-sm-6">
+                        <label  class="col-form-label">Fecha Nacimiento</label>
+                        <input type="date" class="form-control" id="txtfechanacimientou" name="txtfechanacimientoU">
+                    </div>
+                    <div class="col-sm-6">
+                        <label  class="col-form-label">Estado Civil</label>
+                        <input type="text" class="form-control" id="txtestadicivilU" name="txtestadocivilU">
+                    </div>
+                    <div class="col-sm-5">
+                        <label  class="col-form-label">Correo</label>
+                        <input type="email" class="form-control" id="txtcorreoU" name="txtcorreoU">
+                    </div>
+                    <div class="col-sm-4">
+                        <label  class="col-form-label">Contraseña</label>
+                        <input type="email" class="form-control" id="txtcontrasenaU" name="txtcontrasenaU">
+                    </div>
+                    <div class="col-sm-3">
+                        <label  class="col-form-label">Estado:</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="txtestadoU" name="txtestadoU">
+                        </div>
+                        <%--                        <input type="radio" class="form-control" id="txtestado" name="txtestado">--%>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btn-actualizar">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ModalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content col-sm-12">
+            <div class="modal-header bg-danger">
+                <h5 class="modal-title" id="exampleModalLabel3">Eliminar Persona</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" id="frmEliminar" method="POST" action="${context}/ServletPersona">
+                    <input type="hidden" name="action" value="create">
+                    <input type="hidden" name="txtIdPersona" value="txtIdPersona">
+                    <div class="col-sm-12">
+                        <label  class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="txtnombreD" name="txtnombreD">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-warning" id="btn-eliminar">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalInformacion" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content col-sm-12">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title" id="exampleModalLabel4">Información Persona</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" id="frmInformacion" method="POST" action="${context}/ServletPersona">
+                    <input type="hidden" name="action" value="create">
+                    <input type="hidden" name="txtIdPersona" value="txtIdPersona">
+                    <div class="col-sm-7">
+                        <label  class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="txtnombreI" name="txtnombreI">
+                    </div>
+                    <div class="col-sm-5">
+                        <label  class="col-form-label">Apellido Paterno</label>
+                        <input type="text" class="form-control" id="txtapaternoI" name="txtapaternoI">
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="col-form-label">Apellido Materno</label>
+                        <input type="text" class="form-control" id="txtamaternoI" name="txtamaternoI">
+                    </div>
+                    <div class="col-sm-4">
+                        <label  class="col-form-label">Edad</label>
+                        <input type="number" class="form-control" id="txtedadI" name="txtedadI">
+                    </div>
+                    <div class="col-sm-4">
+                        <label  class="col-form-label">Sexo</label>
+                        <input type="text" class="form-control" id="txtsexoI" name="txtsexoI">
+                    </div>
+                    <div class="col-sm-4">
+                        <label  class="col-form-label">Telefono</label>
+                        <input type="number" class="form-control" id="txttelefonoI" name="txttelefonoI">
+                    </div>
+                    <div class="col-sm-8">
+                        <label  class="col-form-label">Dirección</label>
+                        <input type="text" class="form-control" id="txtdireccionI" name="txtdireccionI">
+                    </div>
+                    <div class="col-sm-6">
+                        <label  class="col-form-label">Fecha Nacimiento</label>
+                        <input type="date" class="form-control" id="txtfechanacimientoI" name="txtfechanacimientoI">
+                    </div>
+                    <div class="col-sm-6">
+                        <label  class="col-form-label">Estado Civil</label>
+                        <input type="text" class="form-control" id="txtestadicivilI" name="txtestadocivilI">
+                    </div>
+                    <div class="col-sm-5">
+                        <label  class="col-form-label">Correo</label>
+                        <input type="email" class="form-control" id="txtcorreoI" name="txtcorreoI">
+                    </div>
+                    <div class="col-sm-4">
+                        <label  class="col-form-label">Contraseña</label>
+                        <input type="email" class="form-control" id="txtcontrasenaI" name="txtcontrasenaI">
+                    </div>
+                    <div class="col-sm-3 my-auto mx-auto">
+                            <label  class="col-form-label">Estado:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="txtestadoI" name="txtestadoI">
+                            </div>
+                        <%--                        <input type="radio" class="form-control" id="txtestado" name="txtestado">--%>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!--CONTENT-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

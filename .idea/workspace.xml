@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="practica1:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7743fca8-ef11-4908-8734-2e88f9963a56" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/utez/edu/mx/practica1/controller/ServletPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utez/edu/mx/practica1/controller/ServletPerson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utez/edu/mx/practica1/model/person/DaoPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utez/edu/mx/practica1/model/person/DaoPerson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utez/edu/mx/practica1/controller/ServletPerson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utez/edu/mx/practica1/controller/ServletPerson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utez/edu/mx/practica1/model/person/BeanPerson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utez/edu/mx/practica1/model/person/BeanPerson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utez/edu/mx/practica1/model/person/DaoPerson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utez/edu/mx/practica1/model/person/DaoPerson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utez/edu/mx/practica1/service/ConnectionDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utez/edu/mx/practica1/service/ConnectionDB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/practica1-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/practica1-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/practica1-1.0-SNAPSHOT/WEB-INF/classes/utez/edu/mx/practica1/controller/ServletPerson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/practica1-1.0-SNAPSHOT/WEB-INF/classes/utez/edu/mx/practica1/controller/ServletPerson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/practica1-1.0-SNAPSHOT/WEB-INF/classes/utez/edu/mx/practica1/model/person/BeanPerson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/practica1-1.0-SNAPSHOT/WEB-INF/classes/utez/edu/mx/practica1/model/person/BeanPerson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/practica1-1.0-SNAPSHOT/WEB-INF/classes/utez/edu/mx/practica1/model/person/DaoPerson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/practica1-1.0-SNAPSHOT/WEB-INF/classes/utez/edu/mx/practica1/model/person/DaoPerson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/practica1-1.0-SNAPSHOT/WEB-INF/classes/utez/edu/mx/practica1/service/ConnectionDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/practica1-1.0-SNAPSHOT/WEB-INF/classes/utez/edu/mx/practica1/service/ConnectionDB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/practica1-1.0-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/practica1-1.0-SNAPSHOT/WEB-INF/web.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2LbJBm5SEs869uxk2OswADccp2M" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 8.5.85" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.85" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="practica1:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/practica1_war_exploded" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="87cf2eaa-72d1-4a57-a01b-cb26f6a67b78" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="57616" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="practica1:war exploded" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7743fca8-ef11-4908-8734-2e88f9963a56" name="Changes" comment="" />
+      <created>1676133721723</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1676133721723</updated>
+      <workItem from="1676133725332" duration="4475000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -48,12 +48,12 @@ public class DaoPerson {
 
     
     // EncontrarPorId
-    public BeanPerson findById(int id){
+    public BeanPerson findById(Long id){
         BeanPerson person = null;
         try {
             con = ConnectionDB.getConnection();
             pstm = con.prepareStatement("SELECT * FROM persona WHERE idPersona = ?");
-            pstm.setInt(1,id);
+            pstm.setLong(1,id);
             rs = pstm.executeQuery();
 
             person = new BeanPerson();
@@ -165,13 +165,13 @@ public class DaoPerson {
     }
 
     // Delete
-    public boolean delete(int id){
+    public boolean delete(Long id){
         boolean flag=false;
         try{
             con = ConnectionDB.getConnection();
             pstm = con.prepareCall("DELETE FROM persona WHERE idPersona=?");
 
-            pstm.setInt(1,id);
+            pstm.setLong(1,id);
 
             flag = pstm.executeUpdate() == 1;
         }catch(SQLException e){
