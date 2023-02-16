@@ -20,7 +20,6 @@ const listarPersona = (idPersona) =>{
         let persona = response.UniquePerson;
         console.log(persona)
         if($('#actiona').val() == "update"){
-            console.log("Actualizando")
             $('#txtidpersonaU').val(persona.id),
                 $('#txtnombreU').val(persona.nombre),
                 $('#txtapaternoU').val(persona.aPaterno),
@@ -35,10 +34,10 @@ const listarPersona = (idPersona) =>{
                 $('#txtcontrasenaU').val(persona.correo),
                 $('#txtestadoU').val(persona.estado ? true : false)
         }else if($('#actiona').val() == "delete"){
-            $('#txtidpersonaD').val(persona.id)
+             $('#txtidpersonaD').val(persona.id)
              $('#txtnombreD').val(persona.correo + ' ' + persona.aPaterno + ' ' + persona.aMaterno)
-        }else{
-            $('#txtnombreI').val(persona.nombre),
+        }else if($('#actiona').val() == "info"){
+                $('#txtnombreI').val(persona.nombre),
                 $('#txtapaternoI').val(persona.aPaterno),
                 $('#txtamaternoI').val(persona.aMaterno),
                 $('#txtedadI').val(persona.edad),
@@ -49,7 +48,7 @@ const listarPersona = (idPersona) =>{
                 $('#txtestadocivilI').val(persona.estadoCivil),
                 $('#txtcorreoI').val(persona.correo),
                 $('#txtcontrasenaI').val(persona.correo),
-                $('#txtestadoI').val(persona.estado ? true : false)
+                $('#txtestadoI').val(persona.estado != true ? "Inactivo" : "Activo")
         }
 
     })
@@ -64,7 +63,9 @@ const listarPersona = (idPersona) =>{
     });
     $('#btn-actualizar').on('click', function () {
         $('#frmActualizar').submit();
-
+    });
+    $('#btn-eliminar').on('click', function () {
+        $('#frmEliminar').submit();
     });
 
     /*
@@ -76,27 +77,79 @@ const listarPersona = (idPersona) =>{
         e.preventDefault();
         var form = $(this);
         var url = form.attr('action');
-        console.log(url);
+        let personCreate = {
+            txtnombre: $('#txtnombre').val(),
+            txtapaterno: $('#txtapaterno').val(),
+            txtamaterno: $('#txtamaterno').val(),
+            txtedad: $('#txtedad').val(),
+            txtsexo: $('#txtsexo').val(),
+            txttelefono: $('#txttelefono').val(),
+            txtdireccion: $('#txtdireccion').val(),
+            txtfechanacimiento: $('#txtfechanacimiento').val(),
+            txtestadocivil: $('#txtestadocivil').val(),
+            txtcorreo: $('#txtcorreo').val(),
+            txtcontrasena: $('#txtcontrasena').val(),
+            txtestado: $('#txtestado').val()
+        }
         $.ajax({
             type: 'POST',
             url: contextPath + url,
-            data: {
-                txtnombre: $('#txtnombre').val(),
-                txtapaterno: $('#txtapaterno').val(),
-                txtamaterno: $('#txtamaterno').val(),
-                txtedad: $('#txtedad').val(),
-                txtsexo: $('#txtsexo').val(),
-                txttelefono: $('#txttelefono').val(),
-                txtdireccion: $('#txtdireccion').val(),
-                txtfechanacimiento: $('#txtfechanacimiento').val(),
-                txtestadocivil: $('#txtestadocivil').val(),
-                txtcorreo: $('#txtcorreo').val(),
-                txtcontrasena: $('#txtcontrasena').val(),
-                txtestado: $('#txtestado').val()
-            }
+            data: personCreate
         }).done(function (data) {
             listarPersonas();
             $('#ModalRegistrar').modal('hide');
+        }).fail(function(data) {
+            console.log("Error Al registrar");
+        });
+    })
+
+
+    $('#frmActualizar').submit(function (e) {
+        const contextPath = window.location.origin + window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+        e.preventDefault();
+        var form = $(this);
+        var url = form.attr('action');
+        let personUpdate = {
+            txtnombreU: $('#txtnombreU').val(),
+            txtapaternoU: $('#txtapaternoU').val(),
+            txtamaternoU: $('#txtamaternoU').val(),
+            txtedadU: $('#txtedadU').val(),
+            txtsexoU: $('#txtsexoU').val(),
+            txttelefonoU: $('#txttelefonoU').val(),
+            txtdireccionU: $('#txtdireccionU').val(),
+            txtfechanacimientoU: $('#txtfechanacimientoU').val(),
+            txtestadocivilU: $('#txtestadocivilU').val(),
+            txtcorreoU: $('#txtcorreoU').val(),
+            txtcontrasenaU: $('#txtcontrasenaU').val(),
+            txtestadoU: $('#txtestadoU').val()
+        }
+        $.ajax({
+            type: 'POST',
+            url: contextPath + url,
+            data: personUpdate
+        }).done(function (data) {
+            listarPersonas();
+            $('#ModalActualizar').modal('hide');
+        }).fail(function(data) {
+            console.log("Error Al registrar");
+        });
+    })
+
+    $('#frmEliminar').submit(function (e) {
+        const contextPath = window.location.origin + window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+        e.preventDefault();
+        var form = $(this);
+        var url = form.attr('action');
+        let personDelete = {
+            txtidpersonaD: $('#txtidpersonaD').val()
+        }
+        $.ajax({
+            type: 'POST',
+            url: contextPath + url,
+            data: personDelete
+        }).done(function (data) {
+            listarPersonas();
+            $('#ModalEliminar').modal('hide');
         }).fail(function(data) {
             console.log("Error Al registrar");
         });

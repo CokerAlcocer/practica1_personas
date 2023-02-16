@@ -237,9 +237,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="row g-3" id="frmEliminar" method="POST" action="${context}/ServletPersona">
+                <form class="row g-3" id="frmEliminar" method="POST" action="/ServletPersona?action=delete">
                     <input type="hidden" id="actiona" value="delete">
-                    <input type="hidden" name="txtidpersonaD" value="txtidpersonaD">
+                    <input type="hidden" name="txtidpersonaD" value="">
                     <div class="col-sm-12">
                         <label  class="col-form-label">Nombre:</label>
                         <input type="text" class="form-control" id="txtnombreD" name="txtnombreD">
@@ -262,57 +262,55 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="row g-3" id="frmInformacion" method="POST" action="${context}/ServletPersona">
+                <form class="row g-3" id="frmInformacion" method="POST" action="/ServletPersona">
                     <input type="hidden" id="actiona" value="info">
                     <div class="col-sm-7">
                         <label  class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" id="txtnombreI" name="txtnombreI">
+                        <p class="form-control" id="txtnombreI" name="txtnombreI"></p>
                     </div>
                     <div class="col-sm-5">
                         <label  class="col-form-label">Apellido Paterno</label>
-                        <input type="text" class="form-control" id="txtapaternoI" name="txtapaternoI">
+                        <p class="form-control" id="txtapaternoI" name="txtapaternoI"></p>
                     </div>
                     <div class="col-sm-4">
                         <label class="col-form-label">Apellido Materno</label>
-                        <input type="text" class="form-control" id="txtamaternoI" name="txtamaternoI">
+                        <p class="form-control" id="txtamaternoI" name="txtamaternoI"></p>
                     </div>
                     <div class="col-sm-4">
                         <label  class="col-form-label">Edad</label>
-                        <input type="number" class="form-control" id="txtedadI" name="txtedadI">
+                        <p class="form-control" id="txtedadI" name="txtedadI"></p>
                     </div>
                     <div class="col-sm-4">
                         <label  class="col-form-label">Sexo</label>
-                        <input type="text" class="form-control" id="txtsexoI" name="txtsexoI">
+                        <p class="form-control" id="txtsexoI" name="txtsexoI"></p>
                     </div>
                     <div class="col-sm-4">
                         <label  class="col-form-label">Telefono</label>
-                        <input type="number" class="form-control" id="txttelefonoI" name="txttelefonoI">
+                        <p class="form-control" id="txttelefonoI" name="txttelefonoI"></p>
                     </div>
                     <div class="col-sm-8">
                         <label  class="col-form-label">Dirección</label>
-                        <input type="text" class="form-control" id="txtdireccionI" name="txtdireccionI">
+                        <p class="form-control" id="txtdireccionI" name="txtdireccionI"></p>
                     </div>
                     <div class="col-sm-6">
                         <label  class="col-form-label">Fecha Nacimiento</label>
-                        <input type="date" class="form-control" id="txtfechanacimientoI" name="txtfechanacimientoI">
+                        <p class="form-control" id="txtfechanacimientoI" name="txtfechanacimientoI"></p>
                     </div>
                     <div class="col-sm-6">
                         <label  class="col-form-label">Estado Civil</label>
-                        <input type="text" class="form-control" id="txtestadicivilI" name="txtestadocivilI">
+                        <p class="form-control" id="txtestadicivilI" name="txtestadocivilI"></p>
                     </div>
                     <div class="col-sm-5">
                         <label  class="col-form-label">Correo</label>
-                        <input type="email" class="form-control" id="txtcorreoI" name="txtcorreoI">
+                        <p class="form-control" id="txtcorreoI" name="txtcorreoI"></p>
                     </div>
                     <div class="col-sm-4">
                         <label  class="col-form-label">Contraseña</label>
-                        <input type="email" class="form-control" id="txtcontrasenaI" name="txtcontrasenaI">
+                        <p class="form-control" id="txtcontrasenaI" name="txtcontrasenaI"></p>
                     </div>
                     <div class="col-sm-3 my-auto mx-auto">
                             <label  class="col-form-label">Estado:</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="txtestadoI" name="txtestadoI">
-                            </div>
+                        <p class="form-control" value=""></p>
                         <%--                        <input type="radio" class="form-control" id="txtestado" name="txtestado">--%>
                     </div>
                 </form>
