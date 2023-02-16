@@ -52,27 +52,29 @@ public class DaoPerson {
         BeanPerson person = null;
         try {
             con = ConnectionDB.getConnection();
-            pstm = con.prepareStatement("SELECT * FROM persona WHERE idPersona = ?");
+            pstm = con.prepareStatement("SELECT * FROM persona WHERE id = ?");
             pstm.setLong(1,id);
             rs = pstm.executeQuery();
+            if(rs.next()){
+                person = new BeanPerson();
 
-            person = new BeanPerson();
-
-            person.setId(rs.getLong("id"));
-            person.setNombre(rs.getString("nombre"));
-            person.setaPaterno(rs.getString("a_paterno"));
-            person.setaMaterno(rs.getString("a_materno"));
-            person.setEdad(rs.getInt("edad"));
-            person.setSexo(rs.getString("sexo"));
-            person.setTelefono(rs.getString("telefono"));
-            person.setDireccion(rs.getString("direccion"));
-            person.setFechaNacimiento(rs.getString("fecha_nacimiento"));
-            person.setEstadoCivil(rs.getString("estado_civil"));
-            person.setCorreo(rs.getString("correo"));
-            person.setContrasena(rs.getString("contrasena"));
+                person.setId(rs.getLong("id"));
+                person.setNombre(rs.getString("nombre"));
+                person.setaPaterno(rs.getString("a_paterno"));
+                person.setaMaterno(rs.getString("a_materno"));
+                person.setEdad(rs.getInt("edad"));
+                person.setSexo(rs.getString("sexo"));
+                person.setTelefono(rs.getString("telefono"));
+                person.setDireccion(rs.getString("direccion"));
+                person.setFechaNacimiento(rs.getString("fecha_nacimiento"));
+                person.setEstadoCivil(rs.getString("estado_civil"));
+                person.setCorreo(rs.getString("correo"));
+                person.setContrasena(rs.getString("contrasena"));
+            }
 
         } catch (Exception e) {
             System.out.println("DP_ERR_02");
+            System.out.println(e.getMessage());
         }finally {
             ConnectionDB.closeConnections(con,pstm);
         }

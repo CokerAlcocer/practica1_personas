@@ -60,9 +60,10 @@ public class ServletPerson extends HttpServlet{
             case "findById":
                 idPersona = Long.parseLong(request.getParameter("txtidpersona"));
                 persona = daoPersona.findById(idPersona);
-//                map.put("personaUnica",persona);
-//                write(response,map);
-                request.setAttribute("UniquePerson",persona);
+                map.put("UniquePerson",persona);
+                write(response,map);
+                //request.setAttribute("UniquePerson",persona);
+                map.clear();
                 break;
             case "create":
                 //idPersona = Long.parseLong(request.getParameter("txtidpersona"));

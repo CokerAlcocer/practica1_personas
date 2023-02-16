@@ -74,7 +74,7 @@
                             <div class="col-1 text-center"><span class="col-12 badge bg-primary">${persona.sexo}</span></div>
                             <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
                                 <button class="btn btn-primary py-2" data-bs-toggle="modal" data-bs-target="#modalInformacion"><i class="bi bi-info-circle-fill"></i></button>
-                                <button class="btn btn-primary py-2" data-bs-toggle="modal" data-bs-target="#modalActualizar"><i class="bi bi-pencil-fill"></i></button>
+                                <button class="btn btn-primary py-2" data-bs-toggle="modal" data-bs-target="#modalActualizar" onclick="listarPersona(${persona.id})"><i class="bi bi-pencil-fill"></i></button>
                                 <button class="btn btn-danger py-2" data-bs-toggle="modal" data-bs-target="#modalEliminar"><i class="bi bi-trash-fill"></i></button>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="row g-3" id="frmRegistrar" method="POST" action="${context}/ServletPersona?action=create">
+                <form class="row g-3" id="frmRegistrar" method="POST" action="/ServletPersona?action=create">
                     <div class="col-sm-7">
                         <label  class="col-form-label">Nombre:</label>
                         <input type="text" class="form-control" id="txtnombre" name="txtnombre">
@@ -129,7 +129,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label  class="col-form-label">Estado Civil</label>
-                        <input type="text" class="form-control" id="txtestadicivil" name="txtestadocivil">
+                        <input type="text" class="form-control" id="txtestadocivil" name="txtestadocivil">
                     </div>
                     <div class="col-sm-5">
                         <label  class="col-form-label">Correo</label>
@@ -164,9 +164,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="row g-3" id="frmActualizar" method="POST" action="${context}/ServletPersona">
-                    <input type="hidden" name="action" value="create">
-                    <input type="hidden" name="txtIdPersona" value="txtIdPersona">
+                <form class="row g-3" id="frmActualizar" method="POST" action="/ServletPersona?action=update">
+                    <input type="hidden" id="actiona" value="update">
+                    <input type="hidden" name="txtidpersonaU" id="txtidpersonaU" value="">
                     <div class="col-sm-7">
                         <label  class="col-form-label">Nombre:</label>
                         <input type="text" class="form-control" id="txtnombreU" name="txtnombreU">
@@ -201,7 +201,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label  class="col-form-label">Estado Civil</label>
-                        <input type="text" class="form-control" id="txtestadicivilU" name="txtestadocivilU">
+                        <input type="text" class="form-control" id="txtestadocivilU" name="txtestadocivilU">
                     </div>
                     <div class="col-sm-5">
                         <label  class="col-form-label">Correo</label>
@@ -238,8 +238,8 @@
             </div>
             <div class="modal-body">
                 <form class="row g-3" id="frmEliminar" method="POST" action="${context}/ServletPersona">
-                    <input type="hidden" name="action" value="create">
-                    <input type="hidden" name="txtIdPersona" value="txtIdPersona">
+                    <input type="hidden" id="actiona" value="delete">
+                    <input type="hidden" name="txtidpersonaD" value="txtidpersonaD">
                     <div class="col-sm-12">
                         <label  class="col-form-label">Nombre:</label>
                         <input type="text" class="form-control" id="txtnombreD" name="txtnombreD">
@@ -263,8 +263,7 @@
             </div>
             <div class="modal-body">
                 <form class="row g-3" id="frmInformacion" method="POST" action="${context}/ServletPersona">
-                    <input type="hidden" name="action" value="create">
-                    <input type="hidden" name="txtIdPersona" value="txtIdPersona">
+                    <input type="hidden" id="actiona" value="info">
                     <div class="col-sm-7">
                         <label  class="col-form-label">Nombre:</label>
                         <input type="text" class="form-control" id="txtnombreI" name="txtnombreI">

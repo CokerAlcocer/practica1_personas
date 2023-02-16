@@ -1,23 +1,108 @@
 const listarPersonas = () =>{
     const contextPath = window.location.origin + window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
-    console.log("Path",contextPath)
     $.ajax({
         type: 'GET',
         url: contextPath + '/ServletPersona?action=findAll'
     }).done(function(response){
-        console.log(response.ListPersonas);
         let listPersonas = response.ListPersonas;
+        console.log(listPersonas)
+    })
+}
+
+const listarPersona = (idPersona) =>{
+    console.log("Unique")
+    const contextPath = window.location.origin + window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+    $.ajax({
+        type: 'GET',
+        url: contextPath + '/ServletPersona?action=findById',
+        data: {txtidpersona: idPersona}
+    }).done(function(response){
+        let persona = response.UniquePerson;
+        console.log(persona)
+        if($('#actiona').val() == "update"){
+            console.log("Actualizando")
+            $('#txtidpersonaU').val(persona.id),
+                $('#txtnombreU').val(persona.nombre),
+                $('#txtapaternoU').val(persona.aPaterno),
+                $('#txtamaternoU').val(persona.aMaterno),
+                $('#txtedadU').val(persona.edad),
+                $('#txtsexoU').val(persona.sexo),
+                $('#txttelefonoU').val(persona.telefono),
+                $('#txtdireccionU').val(persona.direccion),
+                $('#txtfechanacimientoU').val(persona.fechaNacimiento),
+                $('#txtestadocivilU').val(persona.estadoCivil),
+                $('#txtcorreoU').val(persona.correo),
+                $('#txtcontrasenaU').val(persona.correo),
+                $('#txtestadoU').val(persona.estado ? true : false)
+        }else if($('#actiona').val() == "delete"){
+            $('#txtidpersonaD').val(persona.id)
+             $('#txtnombreD').val(persona.correo + ' ' + persona.aPaterno + ' ' + persona.aMaterno)
+        }else{
+            $('#txtnombreI').val(persona.nombre),
+                $('#txtapaternoI').val(persona.aPaterno),
+                $('#txtamaternoI').val(persona.aMaterno),
+                $('#txtedadI').val(persona.edad),
+                $('#txtsexoI').val(persona.sexo),
+                $('#txttelefonoI').val(persona.telefono),
+                $('#txtdireccionI').val(persona.direccion),
+                $('#txtfechanacimientoI').val(persona.fechaNacimiento),
+                $('#txtestadocivilI').val(persona.estadoCivil),
+                $('#txtcorreoI').val(persona.correo),
+                $('#txtcontrasenaI').val(persona.correo),
+                $('#txtestadoI').val(persona.estado ? true : false)
+        }
+
     })
 }
 
 
-    $('#btn-guardar1').on('click', function () {
+(function() {
+    listarPersonas()
 
+    $('#btn-guardar1').on('click', function () {
         $('#frmRegistrar').submit();
     });
+    $('#btn-actualizar').on('click', function () {
+        $('#frmActualizar').submit();
+
+    });
+
+    /*
+    *
+    * */
+
+    $('#frmRegistrar').submit(function (e) {
+        const contextPath = window.location.origin + window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+        e.preventDefault();
+        var form = $(this);
+        var url = form.attr('action');
+        console.log(url);
+        $.ajax({
+            type: 'POST',
+            url: contextPath + url,
+            data: {
+                txtnombre: $('#txtnombre').val(),
+                txtapaterno: $('#txtapaterno').val(),
+                txtamaterno: $('#txtamaterno').val(),
+                txtedad: $('#txtedad').val(),
+                txtsexo: $('#txtsexo').val(),
+                txttelefono: $('#txttelefono').val(),
+                txtdireccion: $('#txtdireccion').val(),
+                txtfechanacimiento: $('#txtfechanacimiento').val(),
+                txtestadocivil: $('#txtestadocivil').val(),
+                txtcorreo: $('#txtcorreo').val(),
+                txtcontrasena: $('#txtcontrasena').val(),
+                txtestado: $('#txtestado').val()
+            }
+        }).done(function (data) {
+            listarPersonas();
+            $('#ModalRegistrar').modal('hide');
+        }).fail(function(data) {
+            console.log("Error Al registrar");
+        });
+    })
 
 
 
-window.onload = function(){
-    listarPersonas()
-}
+
+})();
