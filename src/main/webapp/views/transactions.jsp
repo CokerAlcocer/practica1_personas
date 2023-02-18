@@ -27,10 +27,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Personas</a>
+                    <a class="nav-link" aria-current="page" href="<%=context%>/views/register.jsp">Personas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Registro de movimientos</a>
+                    <a class="nav-link active" href="<%=context%>/views/transactions.jsp">Registro de movimientos</a>
                 </li>
             </ul>
             <form class="d-flex">

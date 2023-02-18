@@ -52,9 +52,9 @@ public class ServletPerson extends HttpServlet{
         switch (action){
             case "findAll":
                 List<BeanPerson> listPersonas = daoPersona.findAll();
-//                map.put("ListPersonas",listPersonas);
-//                write(response,map);
-//                map.clear();
+               //map.put("ListPersonas",listPersonas);
+                //write(response,map);
+                //map.clear();
                 request.setAttribute("ListPersonas",listPersonas);
                 break;
             case "findById":
@@ -87,24 +87,24 @@ public class ServletPerson extends HttpServlet{
                 break;
             case "update":
                 try {
-
-                    idPersona = Long.parseLong(request.getParameter("txtidpersona"));
-                    nombre = request.getParameter("txtUnombre");
-                    aPaterno = request.getParameter("txtUapaterno");
-                    aMaterno = request.getParameter("txtUamaterno");
-                    edad = Integer.parseInt(request.getParameter("txtUedad"));
-                    sexo = request.getParameter("txtUsexo");
-                    telefono = request.getParameter("txtUtelefono");
-                    direccion= request.getParameter("txtUdireccion");
-                    fechaNacimiento = request.getParameter("txtUfechanacimiento");
-                    estadoCivil = request.getParameter("txtUestadocivil");
-                    correo = request.getParameter("txtUcorreo");
-                    contrasena = request.getParameter("txtUcontrasena");
-                    estado = Boolean.parseBoolean(request.getParameter("txtUestado"));
+                    idPersona = Long.parseLong(request.getParameter("txtidpersonaU"));
+                    nombre = request.getParameter("txtnombreU");
+                    aPaterno = request.getParameter("txtapaternoU");
+                    aMaterno = request.getParameter("txtamaternoU");
+                    edad = Integer.parseInt(request.getParameter("txtedadU"));
+                    sexo = request.getParameter("txtsexoU");
+                    telefono = request.getParameter("txttelefonoU");
+                    direccion= request.getParameter("txtdireccionU");
+                    fechaNacimiento = request.getParameter("txtfechanacimientoU");
+                    estadoCivil = request.getParameter("txtestadocivilU");
+                    correo = request.getParameter("txtcorreoU");
+                    contrasena = request.getParameter("txtcontrasenaU");
+                    estado = Boolean.parseBoolean(request.getParameter("txtestadoU"));
 
                     persona = new BeanPerson(idPersona,nombre,aPaterno,aMaterno,edad,sexo,telefono,
                             direccion,fechaNacimiento,estadoCivil,correo,contrasena,estado);
-                    daoPersona.create(persona);
+                   
+                    daoPersona.update(persona);
 
                     request.getRequestDispatcher("ServletPersona?action=findAll").forward(request,response);
                 }catch (Exception e){
@@ -115,7 +115,7 @@ public class ServletPerson extends HttpServlet{
             case "delete":
                 try {
 
-                    idPersona = Long.parseLong(request.getParameter("txtidpersona"));
+                    idPersona = Long.parseLong(request.getParameter("txtidpersonaD"));
                     daoPersona.delete(idPersona);
 
                     request.getRequestDispatcher("ServletPersona?action=findAll").forward(request,response);

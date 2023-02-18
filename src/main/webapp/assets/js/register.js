@@ -4,7 +4,7 @@ const listarPersonas = () =>{
         type: 'GET',
         url: contextPath + '/ServletPersona?action=findAll'
     }).done(function(response){
-        let listPersonas = response.ListPersonas;
+        let listPersonas = JSON.stringify(response.ListPersonas);
         console.log(listPersonas)
     })
 }
@@ -20,24 +20,27 @@ const listarPersona = (idPersona) =>{
         let persona = response.UniquePerson;
         console.log(persona)
         if($('#actiona').val() == "update"){
-            $('#txtidpersonaU').val(persona.id),
-                $('#txtnombreU').val(persona.nombre),
-                $('#txtapaternoU').val(persona.aPaterno),
-                $('#txtamaternoU').val(persona.aMaterno),
-                $('#txtedadU').val(persona.edad),
-                $('#txtsexoU').val(persona.sexo),
-                $('#txttelefonoU').val(persona.telefono),
-                $('#txtdireccionU').val(persona.direccion),
-                $('#txtfechanacimientoU').val(persona.fechaNacimiento),
-                $('#txtestadocivilU').val(persona.estadoCivil),
-                $('#txtcorreoU').val(persona.correo),
-                $('#txtcontrasenaU').val(persona.correo),
-                $('#txtestadoU').val(persona.estado ? true : false)
-        }else if($('#actiona').val() == "delete"){
+            $('#txtidpersonaU').val(persona.id)
+                $('#txtnombreU').val(persona.nombre)
+                $('#txtapaternoU').val(persona.aPaterno)
+                $('#txtamaternoU').val(persona.aMaterno)
+                $('#txtedadU').val(persona.edad)
+                $('#txtsexoU').val(persona.sexo)
+                $('#txttelefonoU').val(persona.telefono)
+                $('#txtdireccionU').val(persona.direccion)
+                $('#txtfechanacimientoU').val(persona.fechaNacimiento)
+                $('#txtestadocivilU').val(persona.estadoCivil)
+                $('#txtcorreoU').val(persona.correo)
+                $('#txtcontrasenaU').val(persona.contrasena)
+               console.log(persona.estado)
+                persona.estado == true ? $('#txtestadoU').prop('checked',true) : $('#txtestadoU').prop('checked',false)
+        }
+        if($('#actiona1').val() == "delete"){
              $('#txtidpersonaD').val(persona.id)
-             $('#txtnombreD').val(persona.correo + ' ' + persona.aPaterno + ' ' + persona.aMaterno)
-        }else if($('#actiona').val() == "info"){
-                $('#txtnombreI').val(persona.nombre),
+             $('#txtnombreD').val(persona.nombre + ' ' + persona.aPaterno + ' ' + persona.aMaterno)
+        }
+        if($('#actiona2').val() == "info"){
+                $('#txtnombreI').val(persona.nombre) ,
                 $('#txtapaternoI').val(persona.aPaterno),
                 $('#txtamaternoI').val(persona.aMaterno),
                 $('#txtedadI').val(persona.edad),
@@ -47,8 +50,8 @@ const listarPersona = (idPersona) =>{
                 $('#txtfechanacimientoI').val(persona.fechaNacimiento),
                 $('#txtestadocivilI').val(persona.estadoCivil),
                 $('#txtcorreoI').val(persona.correo),
-                $('#txtcontrasenaI').val(persona.correo),
-                $('#txtestadoI').val(persona.estado != true ? "Inactivo" : "Activo")
+                $('#txtcontrasenaI').val(persona.contrasena)
+                $('#txtestadoI').val(persona.estado != false ? "Activo" : "Inactivo")
         }
 
     })
@@ -109,7 +112,9 @@ const listarPersona = (idPersona) =>{
         e.preventDefault();
         var form = $(this);
         var url = form.attr('action');
+        console.log(url)
         let personUpdate = {
+            txtidpersonaU : $('#txtidpersonaU').val(),
             txtnombreU: $('#txtnombreU').val(),
             txtapaternoU: $('#txtapaternoU').val(),
             txtamaternoU: $('#txtamaternoU').val(),
@@ -131,7 +136,7 @@ const listarPersona = (idPersona) =>{
             listarPersonas();
             $('#ModalActualizar').modal('hide');
         }).fail(function(data) {
-            console.log("Error Al registrar");
+            console.log("Error Al Actualizar");
         });
     })
 
@@ -140,6 +145,7 @@ const listarPersona = (idPersona) =>{
         e.preventDefault();
         var form = $(this);
         var url = form.attr('action');
+        console.log(url)
         let personDelete = {
             txtidpersonaD: $('#txtidpersonaD').val()
         }
@@ -151,7 +157,7 @@ const listarPersona = (idPersona) =>{
             listarPersonas();
             $('#ModalEliminar').modal('hide');
         }).fail(function(data) {
-            console.log("Error Al registrar");
+            console.log("Error Al Eliminar");
         });
     })
 

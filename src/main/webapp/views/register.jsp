@@ -28,10 +28,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Personas</a>
+                        <a class="nav-link active" aria-current="page" href="<%=context%>/views/register.jsp">Personas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Registro de movimientos</a>
+                        <a class="nav-link" href="<%=context%>/views/transactions.jsp">Registro de movimientos</a>
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -73,9 +73,9 @@
                             <div class="col-3 text-center">${persona.fechaNacimiento}</div>
                             <div class="col-1 text-center"><span class="col-12 badge bg-primary">${persona.sexo}</span></div>
                             <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
-                                <button class="btn btn-primary py-2" data-bs-toggle="modal" data-bs-target="#modalInformacion"><i class="bi bi-info-circle-fill"></i></button>
+                                <button class="btn btn-primary py-2" data-bs-toggle="modal" data-bs-target="#modalInformacion" onclick="listarPersona(${persona.id})"><i class="bi bi-info-circle-fill"></i></button>
                                 <button class="btn btn-primary py-2" data-bs-toggle="modal" data-bs-target="#modalActualizar" onclick="listarPersona(${persona.id})"><i class="bi bi-pencil-fill"></i></button>
-                                <button class="btn btn-danger py-2" data-bs-toggle="modal" data-bs-target="#modalEliminar"><i class="bi bi-trash-fill"></i></button>
+                                <button class="btn btn-danger py-2" data-bs-toggle="modal" data-bs-target="#modalEliminar" onclick="listarPersona(${persona.id})"><i class="bi bi-trash-fill"></i></button>
                             </div>
                         </div>
                     </div>
@@ -197,7 +197,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label  class="col-form-label">Fecha Nacimiento</label>
-                        <input type="date" class="form-control" id="txtfechanacimientou" name="txtfechanacimientoU">
+                        <input type="date" class="form-control" id="txtfechanacimientoU" name="txtfechanacimientoU">
                     </div>
                     <div class="col-sm-6">
                         <label  class="col-form-label">Estado Civil</label>
@@ -238,11 +238,11 @@
             </div>
             <div class="modal-body">
                 <form class="row g-3" id="frmEliminar" method="POST" action="/ServletPersona?action=delete">
-                    <input type="hidden" id="actiona" value="delete">
-                    <input type="hidden" name="txtidpersonaD" value="">
+                    <input type="hidden" id="actiona1" value="delete">
+                    <input type="hidden" name="txtidpersonaD" id="txtidpersonaD" value="">
                     <div class="col-sm-12">
                         <label  class="col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" id="txtnombreD" name="txtnombreD">
+                        <input type="text" class="form-control" id="txtnombreD" name="txtnombreD" readonly>
                     </div>
                 </form>
             </div>
@@ -263,54 +263,54 @@
             </div>
             <div class="modal-body">
                 <form class="row g-3" id="frmInformacion" method="POST" action="/ServletPersona">
-                    <input type="hidden" id="actiona" value="info">
+                    <input type="hidden" id="actiona2" value="info">
                     <div class="col-sm-7">
                         <label  class="col-form-label">Nombre:</label>
-                        <p class="form-control" id="txtnombreI" name="txtnombreI"></p>
+                        <input type="text" class="form-control" id="txtnombreI" name="txtnombreI" readonly>
                     </div>
                     <div class="col-sm-5">
                         <label  class="col-form-label">Apellido Paterno</label>
-                        <p class="form-control" id="txtapaternoI" name="txtapaternoI"></p>
+                        <input class="form-control" id="txtapaternoI" name="txtapaternoI" readonly>
                     </div>
                     <div class="col-sm-4">
                         <label class="col-form-label">Apellido Materno</label>
-                        <p class="form-control" id="txtamaternoI" name="txtamaternoI"></p>
+                        <input class="form-control" id="txtamaternoI" name="txtamaternoI" readonly>
                     </div>
                     <div class="col-sm-4">
                         <label  class="col-form-label">Edad</label>
-                        <p class="form-control" id="txtedadI" name="txtedadI"></p>
+                        <input class="form-control" id="txtedadI" name="txtedadI" readonly>
                     </div>
                     <div class="col-sm-4">
                         <label  class="col-form-label">Sexo</label>
-                        <p class="form-control" id="txtsexoI" name="txtsexoI"></p>
+                        <input class="form-control" id="txtsexoI" name="txtsexoI" readonly>
                     </div>
                     <div class="col-sm-4">
                         <label  class="col-form-label">Telefono</label>
-                        <p class="form-control" id="txttelefonoI" name="txttelefonoI"></p>
+                        <input class="form-control" id="txttelefonoI" name="txttelefonoI" readonly>
                     </div>
                     <div class="col-sm-8">
                         <label  class="col-form-label">Dirección</label>
-                        <p class="form-control" id="txtdireccionI" name="txtdireccionI"></p>
+                        <input class="form-control" id="txtdireccionI" name="txtdireccionI" readonly>
                     </div>
                     <div class="col-sm-6">
                         <label  class="col-form-label">Fecha Nacimiento</label>
-                        <p class="form-control" id="txtfechanacimientoI" name="txtfechanacimientoI"></p>
+                        <input class="form-control" id="txtfechanacimientoI" name="txtfechanacimientoI" readonly>
                     </div>
                     <div class="col-sm-6">
                         <label  class="col-form-label">Estado Civil</label>
-                        <p class="form-control" id="txtestadicivilI" name="txtestadocivilI"></p>
+                        <input class="form-control" id="txtestadocivilI" name="txtestadocivilI" readonly>
                     </div>
                     <div class="col-sm-5">
                         <label  class="col-form-label">Correo</label>
-                        <p class="form-control" id="txtcorreoI" name="txtcorreoI"></p>
+                        <input class="form-control" id="txtcorreoI" name="txtcorreoI" readonly>
                     </div>
                     <div class="col-sm-4">
                         <label  class="col-form-label">Contraseña</label>
-                        <p class="form-control" id="txtcontrasenaI" name="txtcontrasenaI"></p>
+                        <input class="form-control" id="txtcontrasenaI" name="txtcontrasenaI" readonly>
                     </div>
                     <div class="col-sm-3 my-auto mx-auto">
                             <label  class="col-form-label">Estado:</label>
-                        <p class="form-control" value=""></p>
+                        <input class="form-control" id="txtestadoI" name="txtestadoI" value="" readonly>
                         <%--                        <input type="radio" class="form-control" id="txtestado" name="txtestado">--%>
                     </div>
                 </form>
