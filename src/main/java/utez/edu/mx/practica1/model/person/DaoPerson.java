@@ -15,12 +15,13 @@ public class DaoPerson {
     // EncontrarTodos
     public List<BeanPerson> findAll(){
         List<BeanPerson> listPersons = new ArrayList<>();
+        BeanPerson person = null;
         try{
             con = ConnectionDB.getConnection();
             pstm = con.prepareStatement("SELECT * FROM persona");
             rs = pstm.executeQuery();
             while (rs.next()) {
-                BeanPerson person = new BeanPerson();
+                person = new BeanPerson();
 
                 person.setId(rs.getLong("id"));
                 person.setNombre(rs.getString("nombre"));
@@ -38,6 +39,7 @@ public class DaoPerson {
                 listPersons.add(person);
             }
         }catch (Exception e) {
+            System.out.println(e.getMessage());
             System.out.println("DP_ERR_01");
         }finally {
             ConnectionDB.closeConnections(con,pstm);
@@ -52,24 +54,25 @@ public class DaoPerson {
         BeanPerson person = null;
         try {
             con = ConnectionDB.getConnection();
-            pstm = con.prepareStatement("SELECT * FROM persona WHERE idPersona = ?");
+            pstm = con.prepareStatement("SELECT * FROM persona WHERE id = ?");
             pstm.setLong(1,id);
             rs = pstm.executeQuery();
+            if(rs.next()){
+                person = new BeanPerson();
 
-            person = new BeanPerson();
-
-            person.setId(rs.getLong("id"));
-            person.setNombre(rs.getString("nombre"));
-            person.setaPaterno(rs.getString("a_paterno"));
-            person.setaMaterno(rs.getString("a_materno"));
-            person.setEdad(rs.getInt("edad"));
-            person.setSexo(rs.getString("sexo"));
-            person.setTelefono(rs.getString("telefono"));
-            person.setDireccion(rs.getString("direccion"));
-            person.setFechaNacimiento(rs.getString("fecha_nacimiento"));
-            person.setEstadoCivil(rs.getString("estado_civil"));
-            person.setCorreo(rs.getString("correo"));
-            person.setContrasena(rs.getString("contrasena"));
+                person.setId(rs.getLong("id"));
+                person.setNombre(rs.getString("nombre"));
+                person.setaPaterno(rs.getString("a_paterno"));
+                person.setaMaterno(rs.getString("a_materno"));
+                person.setEdad(rs.getInt("edad"));
+                person.setSexo(rs.getString("sexo"));
+                person.setTelefono(rs.getString("telefono"));
+                person.setDireccion(rs.getString("direccion"));
+                person.setFechaNacimiento(rs.getString("fecha_nacimiento"));
+                person.setEstadoCivil(rs.getString("estado_civil"));
+                person.setCorreo(rs.getString("correo"));
+                person.setContrasena(rs.getString("contrasena"));
+            }
 
         } catch (Exception e) {
             System.out.println("DP_ERR_02");
@@ -122,7 +125,7 @@ public class DaoPerson {
         try{
             con = ConnectionDB.getConnection();
             pstm = con.prepareStatement("UPDATE persona SET nombre = ?, a_paterno = ?, a_materno = ?, edad = ?, sexo = ?, telefono = ?, " +
-                    "direccion = ?, fecha_nacimiento = ?, estado_civil = ?, correo = ? WHERE idPersona = ?");
+                    "direccion = ?, fecha_nacimiento = ?, estado_civil = ?, correo = ? WHERE id = ?");
             pstm.setString(1,person.getNombre());
             pstm.setString(2,person.getaPaterno());
             pstm.setString(3,person.getaMaterno());
@@ -153,9 +156,7 @@ public class DaoPerson {
         try{
             con = ConnectionDB.getConnection();
             pstm = con.prepareCall("UPDATE persona SET estado=false WHERE idPersona=?");
-
             pstm.setInt(1,id);
-
             pstm.executeUpdate();
         }catch(SQLException e){
             e.getMessage();
@@ -166,16 +167,17 @@ public class DaoPerson {
 
     // Delete
     public boolean delete(Long id){
+        System.out.println(id);
         boolean flag=false;
         try{
             con = ConnectionDB.getConnection();
-            pstm = con.prepareCall("DELETE FROM persona WHERE idPersona=?");
+            pstm = con.prepareCall("DELETE FROM persona WHERE id=?");
 
             pstm.setLong(1,id);
 
             flag = pstm.executeUpdate() == 1;
         }catch(SQLException e){
-           e.getMessage();
+            System.out.println("DP_ERR_05");
         }finally {
             ConnectionDB.closeConnections(con,pstm);
         }

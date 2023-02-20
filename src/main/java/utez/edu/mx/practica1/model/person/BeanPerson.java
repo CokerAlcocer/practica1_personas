@@ -27,7 +27,7 @@ public class BeanPerson {
         this.estado = estado;
     }
 
-    public BeanPerson(String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, String contrasena) {
+    public BeanPerson(String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo, String contrasena, boolean estado) {
         this.nombre = nombre;
         this.aPaterno = aPaterno;
         this.aMaterno = aMaterno;
@@ -39,19 +39,7 @@ public class BeanPerson {
         this.estadoCivil = estadoCivil;
         this.correo = correo;
         this.contrasena = contrasena;
-    }
-
-    public BeanPerson(String nombre, String aPaterno, String aMaterno, int edad, String sexo, String telefono, String direccion, String fechaNacimiento, String estadoCivil, String correo) {
-        this.nombre = nombre;
-        this.aPaterno = aPaterno;
-        this.aMaterno = aMaterno;
-        this.edad = edad;
-        this.sexo = sexo;
-        this.telefono = telefono;
-        this.direccion = direccion;
-        this.fechaNacimiento = fechaNacimiento;
-        this.estadoCivil = estadoCivil;
-        this.correo = correo;
+        this.estado = estado;
     }
 
     public Long getId() {
