@@ -34,15 +34,15 @@ public class DaoPerson {
                 person.setFechaNacimiento(rs.getString("fecha_nacimiento"));
                 person.setEstadoCivil(rs.getString("estado_civil"));
                 person.setCorreo(rs.getString("correo"));
+                person.setEstado(rs.getBoolean("estado"));
                 person.setContrasena(rs.getString("contrasena"));
 
                 listPersons.add(person);
             }
         }catch (Exception e) {
-            System.out.println(e.getMessage());
             System.out.println("DP_ERR_01");
         }finally {
-            ConnectionDB.closeConnections(con,pstm);
+            ConnectionDB.closeConnections(con,pstm,rs);
         }
         return listPersons;
     }
@@ -71,6 +71,7 @@ public class DaoPerson {
                 person.setFechaNacimiento(rs.getString("fecha_nacimiento"));
                 person.setEstadoCivil(rs.getString("estado_civil"));
                 person.setCorreo(rs.getString("correo"));
+                person.setEstado(rs.getBoolean("estado"));
                 person.setContrasena(rs.getString("contrasena"));
             }
 
@@ -88,7 +89,7 @@ public class DaoPerson {
         try{
             con = ConnectionDB.getConnection();
             pstm = con.prepareStatement("INSERT INTO persona(nombre, a_paterno, a_materno, edad, sexo, telefono, direccion, " +
-                    "fecha_nacimiento, estado_civil, correo, contrasena) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    "fecha_nacimiento, estado_civil, correo, contrasena,estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             pstm.setString(1,person.getNombre());
             pstm.setString(2,person.getaPaterno());
             pstm.setString(3,person.getaMaterno());
@@ -100,6 +101,7 @@ public class DaoPerson {
             pstm.setString(9,person.getEstadoCivil());
             pstm.setString(10,person.getCorreo());
             pstm.setString(11,person.getContrasena());
+            pstm.setBoolean(12,person.isEstado());
 
             rs = pstm.getGeneratedKeys();
             if(pstm.executeUpdate() == 1 && rs.first()){
@@ -125,7 +127,7 @@ public class DaoPerson {
         try{
             con = ConnectionDB.getConnection();
             pstm = con.prepareStatement("UPDATE persona SET nombre = ?, a_paterno = ?, a_materno = ?, edad = ?, sexo = ?, telefono = ?, " +
-                    "direccion = ?, fecha_nacimiento = ?, estado_civil = ?, correo = ? WHERE id = ?");
+                    "direccion = ?, fecha_nacimiento = ?, estado_civil = ?, correo = ?,estado = ? WHERE id = ?");
             pstm.setString(1,person.getNombre());
             pstm.setString(2,person.getaPaterno());
             pstm.setString(3,person.getaMaterno());
@@ -136,7 +138,8 @@ public class DaoPerson {
             pstm.setString(8,person.getFechaNacimiento());
             pstm.setString(9,person.getEstadoCivil());
             pstm.setString(10,person.getCorreo());
-            pstm.setLong(11, person.getId());
+            pstm.setBoolean(11,person.isEstado());
+            pstm.setLong(12, person.getId());
 
             if(pstm.executeUpdate() == 1){
                 // QUERY PARA REGISTRAR LA OPERACIÓN
@@ -167,7 +170,6 @@ public class DaoPerson {
 
     // Delete
     public boolean delete(Long id){
-        System.out.println(id);
         boolean flag=false;
         try{
             con = ConnectionDB.getConnection();

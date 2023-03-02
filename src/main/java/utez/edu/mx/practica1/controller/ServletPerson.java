@@ -103,7 +103,7 @@ public class ServletPerson extends HttpServlet{
 
                     persona = new BeanPerson(idPersona,nombre,aPaterno,aMaterno,edad,sexo,telefono,
                             direccion,fechaNacimiento,estadoCivil,correo,contrasena,estado);
-                   
+
                     daoPersona.update(persona);
 
                     request.getRequestDispatcher("ServletPersona?action=findAll").forward(request,response);

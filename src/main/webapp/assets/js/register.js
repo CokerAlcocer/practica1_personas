@@ -5,12 +5,21 @@ const listarPersonas = () =>{
         url: contextPath + '/ServletPersona?action=findAll'
     }).done(function(response){
         let listPersonas = JSON.stringify(response.ListPersonas);
-        console.log(listPersonas)
+    }).fail(function(){
+        Swal.fire({
+            icon: 'error',
+            title: 'Ooops..',
+            text: 'Algo salío mal',
+            timer: 1000
+        })
     })
 }
 
+//Función para permitir visualizar los datos, después de cierto tiempo
+function sleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
 const listarPersona = (idPersona) =>{
-    console.log("Unique")
     const contextPath = window.location.origin + window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
     $.ajax({
         type: 'GET',
@@ -18,7 +27,6 @@ const listarPersona = (idPersona) =>{
         data: {txtidpersona: idPersona}
     }).done(function(response){
         let persona = response.UniquePerson;
-        console.log(persona)
         if($('#actiona').val() == "update"){
             $('#txtidpersonaU').val(persona.id)
                 $('#txtnombreU').val(persona.nombre)
@@ -32,7 +40,6 @@ const listarPersona = (idPersona) =>{
                 $('#txtestadocivilU').val(persona.estadoCivil)
                 $('#txtcorreoU').val(persona.correo)
                 $('#txtcontrasenaU').val(persona.contrasena)
-               console.log(persona.estado)
                 persona.estado == true ? $('#txtestadoU').prop('checked',true) : $('#txtestadoU').prop('checked',false)
         }
         if($('#actiona1').val() == "delete"){
@@ -92,18 +99,47 @@ const listarPersona = (idPersona) =>{
             txtestadocivil: $('#txtestadocivil').val(),
             txtcorreo: $('#txtcorreo').val(),
             txtcontrasena: $('#txtcontrasena').val(),
-            txtestado: $('#txtestado').val()
+            txtestado: $('#txtestado').prop('checked')
         }
-        $.ajax({
-            type: 'POST',
-            url: contextPath + url,
-            data: personCreate
-        }).done(function (data) {
-            listarPersonas();
-            $('#ModalRegistrar').modal('hide');
-        }).fail(function(data) {
-            console.log("Error Al registrar");
-        });
+        $('#ModalRegistrar').modal('hide');
+        Swal.fire({
+            icon: 'info',
+            title: 'Registro',
+            text: 'Seguro de registrar?',
+            confirmButtonText: 'Aceptar',
+            showCancelButton: true
+        }).then((result) => {
+            if(result.isConfirmed){
+                $.ajax({
+                    type: 'POST',
+                    url: contextPath + url,
+                    data: personCreate
+                }).done(function (data) {
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Registro',
+                        text: 'Se registro a la persona',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                    sleep(1000).then(()=>{
+                        listarPersonas()
+                        window.location.reload()
+                    })
+                }).fail(function(data) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ooops..',
+                        text: 'Algo salío mal',
+                        timer: 1000
+                    })
+                });
+            }
+
+        })
+
+
     })
 
 
@@ -112,7 +148,6 @@ const listarPersona = (idPersona) =>{
         e.preventDefault();
         var form = $(this);
         var url = form.attr('action');
-        console.log(url)
         let personUpdate = {
             txtidpersonaU : $('#txtidpersonaU').val(),
             txtnombreU: $('#txtnombreU').val(),
@@ -126,18 +161,46 @@ const listarPersona = (idPersona) =>{
             txtestadocivilU: $('#txtestadocivilU').val(),
             txtcorreoU: $('#txtcorreoU').val(),
             txtcontrasenaU: $('#txtcontrasenaU').val(),
-            txtestadoU: $('#txtestadoU').val()
+            txtestadoU: $('#txtestadoU').prop('checked')
         }
-        $.ajax({
-            type: 'POST',
-            url: contextPath + url,
-            data: personUpdate
-        }).done(function (data) {
-            listarPersonas();
-            $('#ModalActualizar').modal('hide');
-        }).fail(function(data) {
-            console.log("Error Al Actualizar");
-        });
+        $('#ModalActualizar').modal('hide');
+        Swal.fire({
+            icon: 'info',
+            title: 'Modificación',
+            text: 'Seguro de modificar?',
+            confirmButtonText: 'Aceptar',
+            showCancelButton: true
+        }).then((result) => {
+            if(result.isConfirmed){
+                $.ajax({
+                    type: 'POST',
+                    url: contextPath + url,
+                    data: personUpdate
+                }).done(function (data) {
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Modificar',
+                        text: 'Se modifico a la persona',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                    sleep(1000).then(()=>{
+                        listarPersonas()
+                        window.location.reload()
+                    })
+                }).fail(function(data) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ooops..',
+                        text: 'Algo salío mal',
+                        timer: 1000
+                    })
+                });
+            }
+        })
+
+
     })
 
     $('#frmEliminar').submit(function (e) {
@@ -145,20 +208,46 @@ const listarPersona = (idPersona) =>{
         e.preventDefault();
         var form = $(this);
         var url = form.attr('action');
-        console.log(url)
         let personDelete = {
             txtidpersonaD: $('#txtidpersonaD').val()
         }
-        $.ajax({
-            type: 'POST',
-            url: contextPath + url,
-            data: personDelete
-        }).done(function (data) {
-            listarPersonas();
-            $('#ModalEliminar').modal('hide');
-        }).fail(function(data) {
-            console.log("Error Al Eliminar");
-        });
+        $('#ModalEliminar').modal('hide');
+        Swal.fire({
+            icon: 'info',
+            title: 'Eliminación',
+            text: 'Seguro de eliminar?',
+            confirmButtonText: 'Aceptar',
+            showCancelButton: true
+        }).then((result) => {
+            if(result.isConfirmed){
+                $.ajax({
+                    type: 'POST',
+                    url: contextPath + url,
+                    data: personDelete
+                }).done(function (data) {
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Eliminar',
+                        text: 'Se elimino a la persona',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                    sleep(1000).then(()=>{
+                        listarPersonas()
+                        window.location.reload()
+                    })
+                }).fail(function(data) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ooops..',
+                        text: 'Algo salío mal',
+                        timer: 1000
+                    })
+                });
+            }
+        })
+
     })
 
 
