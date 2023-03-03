@@ -14,14 +14,15 @@
 <body>
 
 <section class="form-login">
-    <form action="<%=context%>/ServletPersona?action=login" method="POST" id="frmLogin">
-        <h1 style="text-align: center;">SIPE</h1>
-        <h5 style="text-align: center;">¡Bienvenido!</h5>
-        <input id="correo_usuario" class="controls" type="text" name="txtusuarioR" value="" placeholder="E-mail" required>
-        <input id="contrasena" class="controls" type="password" name="txtcontrasenaR" value="" placeholder="Contraseña" required>
-    </form>
-    <button class="button" type="button" id="btLog" >Iniciar sesión</button>
-    <a href="<%=context%>/views/"></a>
+    <div class="text-center">
+        <form action="<%=context%>/ServletPersona?action=login" method="POST" id="frmLogin">
+            <h1 style="text-align: center;">SIPE</h1>
+            <h5 style="text-align: center;">¡Bienvenido!</h5>
+            <input id="correo_usuario" class="controls" type="text" name="txtusuarioR" value="" placeholder="E-mail" required>
+            <input id="contrasena" class="controls" type="password" name="txtcontrasenaR" value="" placeholder="Contraseña" required>
+        </form>
+        <button class="button" type="button" id="btLog" >Iniciar sesión</button>
+    </div>
 </section>
 
 

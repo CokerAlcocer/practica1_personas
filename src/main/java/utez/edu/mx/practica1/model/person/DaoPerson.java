@@ -13,8 +13,28 @@ public class DaoPerson {
     ResultSet rs;
 
 
-    public BeanPerson login(String correo,String contrasena){
+    public int login(String correo,String contrasena){
+       int flag = 0;
+        try{
+            con = ConnectionDB.getConnection();
+            pstm = con.prepareStatement("SELECT * FROM persona WHERE correo = ? AND contrasena = ?;");
+            pstm.setString(1,correo);
+            pstm.setString(2,contrasena);
+            rs = pstm.executeQuery();
 
+            if(rs.next()){
+               flag =1 ;
+
+            }
+        }catch (Exception e){
+            System.out.println("DP_ERR_000" + e.getMessage());
+        }finally {
+            ConnectionDB.closeConnections(con,pstm,rs);
+        }
+        return flag;
+    }
+
+    public BeanPerson getPersonByLogin(String correo,String contrasena){
         BeanPerson personLog = null;
         try{
             con = ConnectionDB.getConnection();
@@ -40,7 +60,7 @@ public class DaoPerson {
 
             }
         }catch (Exception e){
-            System.out.println("DP_ERR_00" + e.getMessage());
+            System.out.println("DP_ERR_001" + e.getMessage());
         }finally {
             ConnectionDB.closeConnections(con,pstm,rs);
         }
@@ -110,7 +130,7 @@ public class DaoPerson {
             }
 
         } catch (Exception e) {
-            System.out.println("DP_ERR_02");
+            System.out.println("DP_ERR_002");
         }finally {
             ConnectionDB.closeConnections(con,pstm);
         }
@@ -148,7 +168,7 @@ public class DaoPerson {
                 }
             }
         }catch (SQLException e){
-            System.out.println("DP_ERR_03");
+            System.out.println("DP_ERR_003");
         }finally {
             ConnectionDB.closeConnections(con,pstm);
         }
@@ -181,7 +201,7 @@ public class DaoPerson {
                 flag = true;
             }
         }catch (SQLException e){
-            System.out.println("DP_ERR_04");
+            System.out.println("DP_ERR_004");
         }finally {
             ConnectionDB.closeConnections(con,pstm);
         }
@@ -213,7 +233,7 @@ public class DaoPerson {
 
             flag = pstm.executeUpdate() == 1;
         }catch(SQLException e){
-            System.out.println("DP_ERR_05");
+            System.out.println("DP_ERR_005");
         }finally {
             ConnectionDB.closeConnections(con,pstm);
         }

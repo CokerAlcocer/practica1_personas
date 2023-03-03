@@ -35,9 +35,9 @@
                         <a class="nav-link" href="<%=context%>/views/transactions.jsp">Registro de movimientos</a>
                     </li>
                 </ul>
-                <form class="d-flex" method="POST" action="<%=context%>/ServletPersona?action=login">
-                    <small class="text-black mx-1">${usuario.correo}</small>
-                    <button class="btn btn-outline-success" type="submit">Salir</button>
+                <form class="d-flex justify-content-evenly" method="POST" action="<%=context%>/ServletPersona?action=logout">
+                    <small class="text-black mx-1 mt-2"><strong>Sesión:</strong> ${usuario.correo}</small>
+                    <button class="btn btn-outline-secondary" type="submit">Salir</button>
                 </form>
             </div>
         </div>
