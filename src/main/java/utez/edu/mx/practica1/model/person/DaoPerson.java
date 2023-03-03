@@ -12,6 +12,40 @@ public class DaoPerson {
     PreparedStatement pstm;
     ResultSet rs;
 
+
+    public BeanPerson login(String correo,String contrasena){
+
+        BeanPerson personLog = null;
+        try{
+            con = ConnectionDB.getConnection();
+            pstm = con.prepareStatement("SELECT * FROM persona WHERE correo = ? AND contrasena = ?;");
+            pstm.setString(1,correo);
+            pstm.setString(2,contrasena);
+            rs = pstm.executeQuery();
+
+            if(rs.next()){
+                personLog = new BeanPerson(rs.getLong("id"),
+                        rs.getString("nombre"),
+                        rs.getString("a_paterno"),
+                        rs.getString("a_materno"),
+                        rs.getInt("edad"),
+                        rs.getString("sexo"),
+                        rs.getString("telefono"),
+                        rs.getString("direccion"),
+                        rs.getString("fecha_nacimiento"),
+                        rs.getString("estado_civil"),
+                        rs.getString("correo"),
+                        rs.getString("contrasena"),
+                        rs.getBoolean("estado"));
+
+            }
+        }catch (Exception e){
+            System.out.println("DP_ERR_00" + e.getMessage());
+        }finally {
+            ConnectionDB.closeConnections(con,pstm,rs);
+        }
+        return personLog;
+    }
     // EncontrarTodos
     public List<BeanPerson> findAll(){
         List<BeanPerson> listPersons = new ArrayList<>();

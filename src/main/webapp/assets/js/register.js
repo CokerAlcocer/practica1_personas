@@ -68,6 +68,23 @@ const listarPersona = (idPersona) =>{
 (function() {
     listarPersonas()
 
+    $('#showP').on('click',function (){
+        let type = $('#txtcontrasena').attr('type')
+        if(type == 'password'){
+            $('#txtcontrasena').prop('type','text')
+        }else{
+            $('#txtcontrasena').prop('type','password')
+        }
+    });
+    $('#showP1').on('click',function (){
+        let type = $('#txtcontrasenaU').attr('type')
+        if(type == 'password'){
+            $('#txtcontrasenaU').prop('type','text')
+        }else{
+            $('#txtcontrasenaU').prop('type','password')
+        }
+    });
+
     $('#btn-guardar1').on('click', function () {
         $('#frmRegistrar').submit();
     });
@@ -77,6 +94,7 @@ const listarPersona = (idPersona) =>{
     $('#btn-eliminar').on('click', function () {
         $('#frmEliminar').submit();
     });
+
 
     /*
     *

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<%=context%>/assets/general.css">
     <title>Register</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
 </head>
 <body>
 <jsp:include page="/ServletPersona?action=findAll" />
@@ -34,9 +35,9 @@
                         <a class="nav-link" href="<%=context%>/views/transactions.jsp">Registro de movimientos</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                <form class="d-flex" method="POST" action="<%=context%>/ServletPersona?action=login">
+                    <small class="text-black mx-1">${usuario.correo}</small>
+                    <button class="btn btn-outline-success" type="submit">Salir</button>
                 </form>
             </div>
         </div>
@@ -123,11 +124,11 @@
                         <label  class="col-form-label">Dirección</label>
                         <input type="text" class="form-control" id="txtdireccion" name="txtdireccion">
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <label  class="col-form-label">Fecha Nacimiento</label>
                         <input type="date" class="form-control" id="txtfechanacimiento" name="txtfechanacimiento">
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                         <label  class="col-form-label">Estado Civil</label>
                         <input type="text" class="form-control" id="txtestadocivil" name="txtestadocivil">
                     </div>
@@ -135,11 +136,14 @@
                         <label  class="col-form-label">Correo</label>
                         <input type="email" class="form-control" id="txtcorreo" name="txtcorreo">
                     </div>
-                    <div class="col-sm-4">
-                        <label  class="col-form-label">Contraseña</label>
-                        <input type="email" class="form-control" id="txtcontrasena" name="txtcontrasena">
+                    <div class="col-sm-6">
+                        <label for="txtcontrasena" class="form-label">Contraseña</label>
+                        <div class="input-group ">
+                            <button type="button" class="btn btn-light input-group-text" id="showP"><i class="fa-solid fa-eye"></i></button>
+                            <input type="password" class="form-control" id="txtcontrasena" name="txtcontrasena" aria-label="txtcontrasena" aria-describedby="basic-addon1" >
+                        </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                         <label  class="col-form-label">Estado:</label>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="txtestado" name="txtestado">
@@ -195,11 +199,11 @@
                         <label  class="col-form-label">Dirección</label>
                         <input type="text" class="form-control" id="txtdireccionU" name="txtdireccionU">
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <label  class="col-form-label">Fecha Nacimiento</label>
                         <input type="date" class="form-control" id="txtfechanacimientoU" name="txtfechanacimientoU">
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                         <label  class="col-form-label">Estado Civil</label>
                         <input type="text" class="form-control" id="txtestadocivilU" name="txtestadocivilU">
                     </div>
@@ -207,11 +211,14 @@
                         <label  class="col-form-label">Correo</label>
                         <input type="email" class="form-control" id="txtcorreoU" name="txtcorreoU">
                     </div>
-                    <div class="col-sm-4">
-                        <label  class="col-form-label">Contraseña</label>
-                        <input type="email" class="form-control" id="txtcontrasenaU" name="txtcontrasenaU">
+                    <div class="col-sm-6">
+                        <label for="txtcontrasenaU" class="form-label">Contraseña</label>
+                        <div class="input-group ">
+                            <button type="button" class="btn btn-light input-group-text" id="showP1"><i class="fa-solid fa-eye"></i></button>
+                            <input type="password" class="form-control" id="txtcontrasenaU" name="txtcontrasenaU" aria-label="txtcontrasenaU" aria-describedby="basic-addon2" >
+                        </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-6">
                         <label  class="col-form-label">Estado:</label>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="txtestadoU" name="txtestadoU">
