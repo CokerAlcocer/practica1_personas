@@ -7,7 +7,7 @@
 --%>
 <%String context = request.getContextPath();%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <link rel="stylesheet" href="<%=context%>/assets/bootstrap/bootstrap.min.css ">
@@ -16,7 +16,7 @@
     <title>Registro de movimientos</title>
 </head>
 <body>
-
+<jsp:include page="/ServletPersona?action=findTransactions" />
 <!--NAVBAR-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -49,7 +49,6 @@
     <div class="card border-0 shadow col-12">
         <div class="card-body">
             <div class="row">
-                <div class="col-1 text-center fw-bold">#</div>
                 <div class="col-4 fw-bold">Nombre de la persona</div>
                 <div class="col-3 text-center fw-bold">Fecha del movimiento</div>
                 <div class="col-2 text-center fw-bold">Tipo</div>
@@ -58,78 +57,46 @@
         </div>
     </div>
     <div class="scrollable-custom">
-        <div class="card col-12 mt-2">
-            <div class="card-body py-2 px-3">
-                <div class="row d-flex align-items-center">
-                    <div class="col-1 text-center">1</div>
-                    <div class="col-4">Angel Alcocer</div>
-                    <div class="col-3 text-center">01/02/2023</div>
+<c:forEach items="${ListTransactions}"  var="transaction">
+
+    <div class="card col-12 mt-2">
+        <div class="card-body py-2 px-3">
+            <div class="row d-flex align-items-center">
+                <div class="col-4">${transaction.nombrePersona}</div>
+                <div class="col-3 text-center">${transaction.fechaMovimiento}</div>
+                <c:if test="${transaction.tipo == 'INSERT'}">
                     <div class="col-2 text-center"><span class="col-12 badge bg-success">CREATE</span></div>
-                    <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
-                        <button class="btn btn-primary py-2" data-bs-target="#modalInfo" data-bs-toggle="modal"><i class="bi bi-eye-fill"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card col-12 mt-2">
-            <div class="card-body py-2 px-3">
-                <div class="row d-flex align-items-center">
-                    <div class="col-1 text-center">2</div>
-                    <div class="col-4">Angel Alcocer</div>
-                    <div class="col-3 text-center">01/02/2023</div>
+                </c:if>
+                <c:if test="${transaction.tipo == 'UPDATE'}">
                     <div class="col-2 text-center"><span class="col-12 badge bg-primary">UPDATE</span></div>
-                    <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
-                        <button class="btn btn-primary py-2"><i class="bi bi-eye-fill"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card col-12 mt-2">
-            <div class="card-body py-2 px-3">
-                <div class="row d-flex align-items-center">
-                    <div class="col-1 text-center">3</div>
-                    <div class="col-4">Angel Alcocer</div>
-                    <div class="col-3 text-center">01/02/2023</div>
+                </c:if>
+                <c:if test="${transaction.tipo == 'DELETE'}">
                     <div class="col-2 text-center"><span class="col-12 badge bg-danger">DELETE</span></div>
-                    <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
-                        <button class="btn btn-primary py-2"><i class="bi bi-eye-fill"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card col-12 mt-2">
-            <div class="card-body py-2 px-3">
-                <div class="row d-flex align-items-center">
-                    <div class="col-1 text-center">4</div>
-                    <div class="col-4">Angel Alcocer</div>
-                    <div class="col-3 text-center">01/02/2023</div>
+                </c:if>
+                <c:if test="${transaction.tipo == 'LOGIN'}">
                     <div class="col-2 text-center"><span class="col-12 badge bg-dark">LOGIN</span></div>
-                    <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
-                        <button class="btn btn-primary py-2"><i class="bi bi-eye-fill"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card col-12 mt-2">
-            <div class="card-body py-2 px-3">
-                <div class="row d-flex align-items-center">
-                    <div class="col-1 text-center">5</div>
-                    <div class="col-4">Angel Alcocer</div>
-                    <div class="col-3 text-center">01/02/2023</div>
+                </c:if>
+                <c:if test="${transaction.tipo == 'LOGOUT'}">
                     <div class="col-2 text-center"><span class="col-12 badge bg-secondary">LOGOUT</span></div>
-                    <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
-                        <button class="btn btn-primary py-2"><i class="bi bi-eye-fill"></i></button>
-                    </div>
+                </c:if>
+                <c:if test="${transaction.tipo == 'FIND_ALL'}">
+                    <div class="col-2 text-center"><span class="col-12 badge bg-warning">FIND ALL</span></div>
+                </c:if>
+                <c:if test="${transaction.tipo == 'FIND_BY'}">
+                    <div class="col-2 text-center"><span class="col-12 badge bg-warning">FIND BY ID</span></div>
+                </c:if>
+                <c:if test="${transaction.tipo == 'SIGNUP'}">
+                    <div class="col-2 text-center"><span class="col-12 badge bg-info">SIGNUP</span></div>
+                </c:if>
+                <div class="col-2 text-center d-flex flex-row justify-content-center justify-content-evenly">
+                    <button class="btn btn-primary py-2" data-bs-target="#modalInfo" data-bs-toggle="modal" onclick="listarTrasaction(${transaction.id})"><i class="bi bi-eye-fill"></i></button>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!--CONTENT-->
+    </c:forEach>
+    </div>
+
 
 <!--MODAL INFO-->
 <div class="modal fade" id="modalInfo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -138,8 +105,18 @@
             <div class="card">
                 <div class="card-header"><h4>Detalles del movimiento</h4></div>
                 <div class="card-body">
-                    <label for="">Tipo de movimiento</label>
-                    <span class="badge bg-success">CREATE</span>
+                    <div class="row">
+                        <div class="col">
+                            <label >Datos Anteriores</label>
+                            <p id="oldD"></p>
+                        </div>
+                        <div class="col">
+                            <label >Nuevos Datos</label>
+                            <p id="newD"></p>
+                        </div>
+                    </div>
+
+
                 </div>
                 <div class="card-footer text-end">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -149,9 +126,11 @@
     </div>
 </div>
 <!--MODAL INFO-->
-
+</div>
 <!--SCRIPTS-->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="<%=context%>/assets/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="<%=context%>/assets/js/transactions.js"></script>
 <!--SCRIPTS-->
 
 </body>

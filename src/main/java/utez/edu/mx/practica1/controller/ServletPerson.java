@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import utez.edu.mx.practica1.model.person.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import utez.edu.mx.practica1.model.transaction.BeanTransaction;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,6 +25,7 @@ public class ServletPerson extends HttpServlet{
     final private Logger log = LoggerFactory.getLogger(ServletPerson.class);
     DaoPerson daoPersona = new DaoPerson();
     BeanPerson persona = new BeanPerson();
+    BeanTransaction transaction = new BeanTransaction();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         //permitir la codificacion de caracteres
@@ -35,7 +37,7 @@ public class ServletPerson extends HttpServlet{
 
 
         //varibles para manipulacion de persona
-        Long idPersona;
+        Long idPersona,idTransaction;
         String nombre,aPaterno,aMaterno;
         int edad;
         String sexo;
@@ -48,7 +50,7 @@ public class ServletPerson extends HttpServlet{
         String contrasena;
         boolean estado;
         HttpSession session = request.getSession();
-        session.setAttribute("inicial","inicial");
+        //session.setAttribute("inicial","inicial");
         String action = request.getParameter("action");
         switch (action){
             case "login":
@@ -64,7 +66,32 @@ public class ServletPerson extends HttpServlet{
                     request.getRequestDispatcher("/index.jsp").forward(request, response);
                 }
                 break;
+            case "signUp":
+                nombre = request.getParameter("txtnombre");
+                aPaterno = request.getParameter("txtapaterno");
+                aMaterno = request.getParameter("txtamaterno");
+                edad = Integer.parseInt(request.getParameter("txtedad"));
+                sexo = request.getParameter("txtsexo");
+                telefono = request.getParameter("txttelefono");
+                direccion = request.getParameter("txtdireccion");
+                fechaNacimiento = request.getParameter("txtfechanacimiento");
+                estadoCivil = request.getParameter("txtestadocivil");
+                correo = request.getParameter("txtcorreo");
+                contrasena = request.getParameter("txtcontrasena");
+                estado = true;
+
+                persona = new BeanPerson(nombre, aPaterno, aMaterno, edad, sexo, telefono,
+                        direccion, fechaNacimiento, estadoCivil, correo, contrasena, estado);
+               if( daoPersona.signUp(persona)){
+                   request.getRequestDispatcher("/index.jsp").forward(request, response);
+               }else {
+                   request.getRequestDispatcher("/index.jsp").forward(request, response);
+               }
+
+                break;
             case "logout":
+                persona = (BeanPerson) session.getAttribute("usuario");
+                daoPersona.logout(persona.getId());
                 session.removeAttribute("usuario");
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
                 break;
@@ -76,9 +103,23 @@ public class ServletPerson extends HttpServlet{
                 //request.setAttribute("UniquePerson",persona);
                 map.clear();
                 break;
+            case "transactionById":
+                idTransaction = Long.parseLong(request.getParameter("txtidtransaction"));
+                transaction = daoPersona.transactionById(idTransaction);
+                map.put("UniqueTransaction", transaction);
+                write(response, map);
+                System.out.println(transaction.getDatoNuevo());
+                //request.setAttribute("UniquePerson",persona);
+                map.clear();
+                break;
             case "findAll":
-                List<BeanPerson> listPersonas = daoPersona.findAll();
+                persona = (BeanPerson) session.getAttribute("usuario");
+                List<BeanPerson> listPersonas = daoPersona.findAll(persona.getId());
                 request.setAttribute("ListPersonas", listPersonas);
+                break;
+            case "findTransactions":
+                List<BeanTransaction> listTransactions = daoPersona.getTransactions();
+                request.setAttribute("ListTransactions",listTransactions);
                 break;
             case "create":
                 nombre = request.getParameter("txtnombre");

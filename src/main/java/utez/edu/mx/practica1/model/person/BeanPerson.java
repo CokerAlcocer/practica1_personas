@@ -146,22 +146,5 @@ public class BeanPerson {
         this.estado = estado;
     }
 
-    @Override
-    public String toString() {
-        return "BeanPerson{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", aPaterno='" + aPaterno + '\'' +
-                ", aMaterno='" + aMaterno + '\'' +
-                ", edad=" + edad +
-                ", sexo='" + sexo + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", fechaNacimiento='" + fechaNacimiento + '\'' +
-                ", estadoCivil='" + estadoCivil + '\'' +
-                ", correo='" + correo + '\'' +
-                ", contrasena='" + contrasena + '\'' +
-                ", estado=" + estado +
-                '}';
-    }
+
 }

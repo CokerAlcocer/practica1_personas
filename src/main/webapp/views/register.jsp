@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<%=context%>/assets/general.css">
     <title>Register</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
 </head>
 <body>
 <jsp:include page="/ServletPersona?action=findAll" />
@@ -69,7 +68,7 @@
                 <div class="card col-12 mt-2">
                     <div class="card-body py-2 px-3">
                         <div class="row d-flex align-items-center">
-                            <div class="col-1 text-center">1</div>
+                            <div class="col-1 text-center">${index}</div>
                             <div class="col-5">${persona.nombre} ${persona.aPaterno} ${persona.aMaterno}</div>
                             <div class="col-3 text-center">${persona.fechaNacimiento}</div>
                             <div class="col-1 text-center"><span class="col-12 badge bg-primary">${persona.sexo}</span></div>
@@ -139,7 +138,7 @@
                     <div class="col-sm-6">
                         <label for="txtcontrasena" class="form-label">Contraseña</label>
                         <div class="input-group ">
-                            <button type="button" class="btn btn-light input-group-text" id="showP"><i class="fa-solid fa-eye"></i></button>
+                            <button type="button" class="btn btn-light input-group-text" id="showP"><i class="bi bi-eye-fill"></i></button>
                             <input type="password" class="form-control" id="txtcontrasena" name="txtcontrasena" aria-label="txtcontrasena" aria-describedby="basic-addon1" >
                         </div>
                     </div>
@@ -214,7 +213,7 @@
                     <div class="col-sm-6">
                         <label for="txtcontrasenaU" class="form-label">Contraseña</label>
                         <div class="input-group ">
-                            <button type="button" class="btn btn-light input-group-text" id="showP1"><i class="fa-solid fa-eye"></i></button>
+                            <button type="button" class="btn btn-light input-group-text" id="showP1"><i class="bi bi-eye-fill"></i></button>
                             <input type="password" class="form-control" id="txtcontrasenaU" name="txtcontrasenaU" aria-label="txtcontrasenaU" aria-describedby="basic-addon2" >
                         </div>
                     </div>
