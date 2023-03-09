@@ -37,7 +37,7 @@ public class ServletPerson extends HttpServlet{
 
 
         //varibles para manipulacion de persona
-        Long idPersona,idTransaction;
+        Long idPersona,idTransaction,idSesiPer;
         String nombre,aPaterno,aMaterno;
         int edad;
         String sexo;
@@ -49,6 +49,7 @@ public class ServletPerson extends HttpServlet{
         boolean trabajo;
         String contrasena;
         boolean estado;
+        BeanPerson newPer ;
         HttpSession session = request.getSession();
         //session.setAttribute("inicial","inicial");
         String action = request.getParameter("action");
@@ -97,7 +98,9 @@ public class ServletPerson extends HttpServlet{
                 break;
             case "findById":
                 idPersona = Long.parseLong(request.getParameter("txtidpersona"));
-                persona = daoPersona.findById(idPersona);
+                newPer = (BeanPerson) session.getAttribute("usuario");
+                idSesiPer = newPer.getId();
+                persona = daoPersona.findById(idPersona,idSesiPer);
                 map.put("UniquePerson", persona);
                 write(response, map);
                 //request.setAttribute("UniquePerson",persona);
@@ -108,7 +111,6 @@ public class ServletPerson extends HttpServlet{
                 transaction = daoPersona.transactionById(idTransaction);
                 map.put("UniqueTransaction", transaction);
                 write(response, map);
-                System.out.println(transaction.getDatoNuevo());
                 //request.setAttribute("UniquePerson",persona);
                 map.clear();
                 break;
@@ -118,7 +120,9 @@ public class ServletPerson extends HttpServlet{
                 request.setAttribute("ListPersonas", listPersonas);
                 break;
             case "findTransactions":
-                List<BeanTransaction> listTransactions = daoPersona.getTransactions();
+                newPer = (BeanPerson) session.getAttribute("usuario");
+                idSesiPer = newPer.getId();
+                List<BeanTransaction> listTransactions = daoPersona.getTransactions(idSesiPer);
                 request.setAttribute("ListTransactions",listTransactions);
                 break;
             case "create":
@@ -135,10 +139,12 @@ public class ServletPerson extends HttpServlet{
                 contrasena = request.getParameter("txtcontrasena");
                 estado = Boolean.parseBoolean(request.getParameter("txtestado"));
 
+                newPer = (BeanPerson) session.getAttribute("usuario");
+                idSesiPer = newPer.getId();
                 persona = new BeanPerson(nombre, aPaterno, aMaterno, edad, sexo, telefono,
                         direccion, fechaNacimiento, estadoCivil, correo, contrasena, estado);
-                daoPersona.create(persona);
-                request.getRequestDispatcher("ServletPersona?action=findAll").forward(request, response);
+                daoPersona.create(persona,idSesiPer);
+                //request.getRequestDispatcher("ServletPersona?action=findAll").forward(request, response);
                 break;
             case "update":
                 try {
@@ -156,22 +162,26 @@ public class ServletPerson extends HttpServlet{
                     contrasena = request.getParameter("txtcontrasenaU");
                     estado = Boolean.parseBoolean(request.getParameter("txtestadoU"));
 
+                    newPer = (BeanPerson) session.getAttribute("usuario");
+                    idSesiPer = newPer.getId();
+
                     persona = new BeanPerson(idPersona, nombre, aPaterno, aMaterno, edad, sexo, telefono,
                             direccion, fechaNacimiento, estadoCivil, correo, contrasena, estado);
 
-                    daoPersona.update(persona);
+                    daoPersona.update(persona,idSesiPer);
 
-                    request.getRequestDispatcher("ServletPersona?action=findAll").forward(request, response);
+                    //request.getRequestDispatcher("ServletPersona?action=findAll").forward(request, response);
                 } catch (Exception e) {
                     System.out.println("Error al actualizar" + e.getMessage());
                 }
                 break;
             case "delete":
                 try {
+                    newPer = (BeanPerson) session.getAttribute("usuario");
+                    idSesiPer = newPer.getId();
 
                     idPersona = Long.parseLong(request.getParameter("txtidpersonaD"));
-                    daoPersona.delete(idPersona);
-
+                    daoPersona.delete(idPersona,idSesiPer);
                     request.getRequestDispatcher("ServletPersona?action=findAll").forward(request, response);
                 } catch (Exception e) {
                     System.out.println("Error al eliminar" + e.getMessage());

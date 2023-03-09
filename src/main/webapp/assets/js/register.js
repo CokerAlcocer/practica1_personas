@@ -243,13 +243,13 @@ const listarPersona = (idPersona) =>{
                     url: contextPath + url,
                     data: personDelete
                 }).done(function (data) {
-
+                 console.log(data.data)
                     Swal.fire({
                         icon: 'success',
                         title: 'Eliminar',
                         text: 'Se elimino a la persona',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 850
                     })
                     sleep(1000).then(()=>{
                         listarPersonas()

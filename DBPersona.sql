@@ -88,7 +88,7 @@ DELIMITER ;
 
 DROP TRIGGER IF EXISTS operation_delete;
 DELIMITER //
-CREATE TRIGGER operation_delete AFTER DELETE ON json_persona FOR EACH ROW
+CREATE TRIGGER operation_delete BEFORE DELETE ON json_persona FOR EACH ROW
 BEGIN
     INSERT INTO operacion(id_tipo_operacion, dato_viejo, dato_nuevo,id_jsonpersona) VALUES(3, old.datos, '{}',old.id);
 END //
